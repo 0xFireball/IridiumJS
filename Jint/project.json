@@ -4,7 +4,7 @@
   "description": "JavaScript interpreter for .NET based on Jint",
   "language": "en-US",
   "copyright": "0xFireball, Sebastien Ros",
-  "authors": [ "Sebastien Ros" ],
+  "authors": [ "Sebastien Ros", "0xFireball" ],
   "packOptions": {
     "projectUrl": "https://github.com/0xFireball/IridiumJS.git",
     "tags": [ "javascript, interpreter" ],
