@@ -6,12 +6,12 @@
   "copyright": "0xFireball, Sebastien Ros",
   "authors": [ "Sebastien Ros" ],
   "packOptions": {
-    "projectUrl": "https://github.com/sebastienros/jint",
+    "projectUrl": "https://github.com/0xFireball/IridiumJS.git",
     "tags": [ "javascript, interpreter" ],
-    "licenseUrl": "https://raw.githubusercontent.com/sebastienros/jint/master/LICENSE.txt",
+    "licenseUrl": "https://raw.githubusercontent.com/0xFireball/IridiumJS/master/LICENSE.txt",
     "repository": {
       "type": "git",
-      "url": "git://github.com/sebastienros/jint"
+      "url": "https://github.com/0xFireball/IridiumJS.git"
     },
     "releaseNotes": "Signed assembly."
   },
