@@ -96,6 +96,10 @@ namespace IridiumJS
             TypeError = ErrorConstructor.CreateErrorConstructor(this, "TypeError");
             UriError = ErrorConstructor.CreateErrorConstructor(this, "URIError");
 
+            //Initialize DynamicValueSetter
+            VariableContext = new DynamicVariableSetter(this);
+
+
             // Because the properties might need some of the built-in object
             // their configuration is delayed to a later step
 
@@ -188,6 +192,9 @@ namespace IridiumJS
         public ErrorConstructor UriError { get; private set; }
 
         public ExecutionContext ExecutionContext { get { return _executionContexts.Peek(); } }
+
+        //public DynamicVariableSetter VariableContext { get; }
+        public dynamic VariableContext { get; }
 
         internal Options Options { get; private set; }
 

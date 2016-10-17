@@ -1438,5 +1438,15 @@ namespace IridiumJS.Tests.Runtime
                 assert(new String(zero) == zero.toString());
             ");
         }
+
+        [Fact]
+        public void CanAccessVariablesThroughVariableContext()
+        {
+            _engine.VariableContext.a = 1;
+            _engine.VariableContext.b = 1;
+            RunTest(@"
+                assert(a + b == 2);
+            ");
+        }
     }
 }
