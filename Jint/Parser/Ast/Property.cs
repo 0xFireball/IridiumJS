@@ -1,6 +1,6 @@
 using System;
 
-namespace Jint.Parser.Ast
+namespace IridiumJS.Parser.Ast
 {
     [Flags]
     public enum PropertyKind

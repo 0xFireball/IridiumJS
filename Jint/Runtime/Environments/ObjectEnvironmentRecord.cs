@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Jint.Native;
-using Jint.Native.Object;
-using Jint.Runtime.Descriptors;
+using IridiumJS.Native;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime.Descriptors;
 
-namespace Jint.Runtime.Environments
+namespace IridiumJS.Runtime.Environments
 {
     /// <summary>
     /// Represents an object environment record

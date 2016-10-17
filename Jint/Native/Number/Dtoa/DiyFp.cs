@@ -30,7 +30,7 @@
 
 using System.Diagnostics;
 
-namespace Jint.Native.Number.Dtoa
+namespace IridiumJS.Native.Number.Dtoa
 {
 
 // This "Do It Yourself Floating Point" class implements a floating-point number

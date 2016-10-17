@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Jint.Parser
+namespace IridiumJS.Parser
 {
     public class ParserException : Exception
     {

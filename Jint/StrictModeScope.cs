@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Jint
+namespace IridiumJS
 {
     public class StrictModeScope : IDisposable
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Jint.Native;
+using IridiumJS.Native;
 
-namespace Jint.Runtime.Environments
+namespace IridiumJS.Runtime.Environments
 {
     /// <summary>
     /// Represents a declarative environment record

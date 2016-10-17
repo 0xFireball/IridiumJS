@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Jint.Native.Object;
-using Jint.Runtime;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
 
-namespace Jint.Native.Function
+namespace IridiumJS.Native.Function
 {
     public class BindFunctionInstance : FunctionInstance, IConstructor
     {

@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Jint.Tests.Ecma
+namespace IridiumJS.Tests.Ecma
 {
     public class Test_11_11_1 : EcmaTest
     {

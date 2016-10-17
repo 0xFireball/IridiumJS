@@ -1,7 +1,7 @@
 ﻿using System;
-using Jint.Native;
+using IridiumJS.Native;
 
-namespace Jint.Tests.Runtime.Domain
+namespace IridiumJS.Tests.Runtime.Domain
 {
     public class A
     {

@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Jint.Native;
-using Jint.Runtime;
+using IridiumJS.Native;
+using IridiumJS.Runtime;
 
-namespace Jint.Repl
+namespace IridiumJS.Repl
 {
     class Program
     {

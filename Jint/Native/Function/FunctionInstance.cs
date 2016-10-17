@@ -1,8 +1,8 @@
-﻿using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Environments;
+﻿using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Environments;
 
-namespace Jint.Native.Function
+namespace IridiumJS.Native.Function
 {
     public abstract class FunctionInstance : ObjectInstance, ICallable
     {

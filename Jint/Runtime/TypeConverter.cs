@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Jint.Native;
-using Jint.Native.Number;
-using Jint.Native.Object;
-using Jint.Native.String;
+using IridiumJS.Native;
+using IridiumJS.Native.Number;
+using IridiumJS.Native.Object;
+using IridiumJS.Native.String;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     public enum Types
     {

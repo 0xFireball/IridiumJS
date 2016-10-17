@@ -1,7 +1,7 @@
-﻿using Jint.Runtime;
-using Jint.Runtime.Descriptors;
+﻿using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
 
-namespace Jint.Native.Function
+namespace IridiumJS.Native.Function
 {
     public sealed class ThrowTypeError : FunctionInstance
     {

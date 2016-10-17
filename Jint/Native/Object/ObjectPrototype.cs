@@ -1,8 +1,8 @@
-﻿using Jint.Runtime;
-using Jint.Runtime.Descriptors;
-using Jint.Runtime.Interop;
+﻿using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Object
+namespace IridiumJS.Native.Object
 {
     public sealed class ObjectPrototype : ObjectInstance
     {

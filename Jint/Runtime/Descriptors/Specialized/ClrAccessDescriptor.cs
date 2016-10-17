@@ -1,8 +1,8 @@
 ﻿using System;
-using Jint.Native;
-using Jint.Runtime.Interop;
+using IridiumJS.Native;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Runtime.Descriptors.Specialized
+namespace IridiumJS.Runtime.Descriptors.Specialized
 {
     public sealed class ClrAccessDescriptor : PropertyDescriptor
     {

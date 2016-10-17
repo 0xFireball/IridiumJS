@@ -1,6 +1,6 @@
-﻿using Jint.Runtime.Environments;
+﻿using IridiumJS.Runtime.Environments;
 
-namespace Jint.Native.Function
+namespace IridiumJS.Native.Function
 {
     public sealed class FunctionShim : FunctionInstance
     {

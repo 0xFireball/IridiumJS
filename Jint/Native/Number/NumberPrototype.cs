@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
-using Jint.Native.Number.Dtoa;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Number.Dtoa;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Number
+namespace IridiumJS.Native.Number
 {
     /// <summary>
     /// http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4

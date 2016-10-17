@@ -1,4 +1,4 @@
-﻿namespace Jint.Parser
+﻿namespace IridiumJS.Parser
 {
     public enum Tokens
     {

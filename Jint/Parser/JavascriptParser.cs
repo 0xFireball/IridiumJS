@@ -4,10 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Jint.Native.String;
-using Jint.Parser.Ast;
+using IridiumJS.Native.String;
+using IridiumJS.Parser.Ast;
 
-namespace Jint.Parser
+namespace IridiumJS.Parser
 {
     public class JavaScriptParser
     {

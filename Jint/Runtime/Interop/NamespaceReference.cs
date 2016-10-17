@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using Jint.Native;
-using Jint.Native.Object;
-using Jint.Runtime.Descriptors;
+using IridiumJS.Native;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime.Descriptors;
 
-namespace Jint.Runtime.Interop
+namespace IridiumJS.Runtime.Interop
 {
     /// <summary>
     /// Any instance on this class represents a reference to a CLR namespace.

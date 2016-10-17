@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using Jint.Native;
+using IridiumJS.Native;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Jint.Runtime.Interop
+namespace IridiumJS.Runtime.Interop
 {
     public class DefaultTypeConverter : ITypeConverter
     {

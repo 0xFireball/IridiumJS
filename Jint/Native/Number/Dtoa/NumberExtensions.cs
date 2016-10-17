@@ -1,4 +1,4 @@
-﻿namespace Jint.Native.Number.Dtoa
+﻿namespace IridiumJS.Native.Number.Dtoa
 {
     public static class NumberExtensions
     {

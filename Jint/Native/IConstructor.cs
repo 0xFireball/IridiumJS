@@ -1,6 +1,6 @@
-﻿using Jint.Native.Object;
+﻿using IridiumJS.Native.Object;
 
-namespace Jint.Native
+namespace IridiumJS.Native
 {
     public interface IConstructor
     {

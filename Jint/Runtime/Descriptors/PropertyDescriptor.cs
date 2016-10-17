@@ -1,7 +1,7 @@
-﻿using Jint.Native;
-using Jint.Native.Object;
+﻿using IridiumJS.Native;
+using IridiumJS.Native.Object;
 
-namespace Jint.Runtime.Descriptors
+namespace IridiumJS.Runtime.Descriptors
 {
     public class PropertyDescriptor
     {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Jint.Native.Object;
-using Jint.Native.String;
-using Jint.Parser;
-using Jint.Parser.Ast;
-using Jint.Runtime;
-using Jint.Runtime.Environments;
+using IridiumJS.Native.Object;
+using IridiumJS.Native.String;
+using IridiumJS.Parser;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Environments;
 
-namespace Jint.Native.Function
+namespace IridiumJS.Native.Function
 {
     public sealed class FunctionConstructor : FunctionInstance, IConstructor
     {

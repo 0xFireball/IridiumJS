@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reflection;
-using Jint.Native;
-using Jint.Native.Object;
-using Jint.Tests.Runtime.Converters;
-using Jint.Tests.Runtime.Domain;
+using IridiumJS.Native;
+using IridiumJS.Native.Object;
+using IridiumJS.Tests.Runtime.Converters;
+using IridiumJS.Tests.Runtime.Domain;
 using Shapes;
 using Xunit;
 
-namespace Jint.Tests.Runtime
+namespace IridiumJS.Tests.Runtime
 {
     public class InteropTests : IDisposable
     {

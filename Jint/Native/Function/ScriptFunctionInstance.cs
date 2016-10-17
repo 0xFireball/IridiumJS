@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using Jint.Native.Object;
-using Jint.Parser;
-using Jint.Runtime;
-using Jint.Runtime.Descriptors;
-using Jint.Runtime.Environments;
+using IridiumJS.Native.Object;
+using IridiumJS.Parser;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
+using IridiumJS.Runtime.Environments;
 
-namespace Jint.Native.Function
+namespace IridiumJS.Native.Function
 {
     /// <summary>
     /// 

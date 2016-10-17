@@ -1,8 +1,8 @@
-﻿using Jint.Native.Function;
-using Jint.Native.Object;
-using Jint.Runtime;
+﻿using IridiumJS.Native.Function;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
 
-namespace Jint.Native.Boolean
+namespace IridiumJS.Native.Boolean
 {
     public sealed class BooleanConstructor : FunctionInstance, IConstructor
     {

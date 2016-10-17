@@ -1,7 +1,7 @@
-﻿using Jint.Native;
-using Jint.Native.Object;
+﻿using IridiumJS.Native;
+using IridiumJS.Native.Object;
 
-namespace Jint.Runtime.Environments
+namespace IridiumJS.Runtime.Environments
 {
     /// <summary>
     /// Base implementation of an Environment Record

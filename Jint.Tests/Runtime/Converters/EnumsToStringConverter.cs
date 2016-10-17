@@ -1,8 +1,8 @@
-﻿using Jint.Native;
-using Jint.Runtime.Interop;
+﻿using IridiumJS.Native;
+using IridiumJS.Runtime.Interop;
 using System;
 
-namespace Jint.Tests.Runtime.Converters
+namespace IridiumJS.Tests.Runtime.Converters
 {
     public class EnumsToStringConverter : IObjectConverter
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Jint.Tests.Runtime.Domain
+namespace IridiumJS.Tests.Runtime.Domain
 {
     public class ArrayConverterTestClass
     {

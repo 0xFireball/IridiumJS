@@ -1,8 +1,8 @@
-﻿using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+﻿using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Json
+namespace IridiumJS.Native.Json
 {
     public sealed class JsonInstance : ObjectInstance
     {

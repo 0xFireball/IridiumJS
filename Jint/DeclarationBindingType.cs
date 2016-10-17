@@ -1,4 +1,4 @@
-﻿namespace Jint
+﻿namespace IridiumJS
 {
     public enum DeclarationBindingType
     {

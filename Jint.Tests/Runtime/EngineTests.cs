@@ -3,15 +3,15 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using Jint.Native.Number;
-using Jint.Parser;
-using Jint.Parser.Ast;
-using Jint.Runtime;
-using Jint.Runtime.Debugger;
+using IridiumJS.Native.Number;
+using IridiumJS.Parser;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Debugger;
 using Xunit;
 using System.Net;
 
-namespace Jint.Tests.Runtime
+namespace IridiumJS.Tests.Runtime
 {
     public class EngineTests : IDisposable
     {

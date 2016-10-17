@@ -1,6 +1,6 @@
-﻿using Jint.Native;
+﻿using IridiumJS.Native;
 
-namespace Jint.Runtime.Interop
+namespace IridiumJS.Runtime.Interop
 {
     /// <summary>
     /// When implemented, converts a CLR value to a <see cref="JsValue"/> instance

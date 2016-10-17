@@ -1,8 +1,8 @@
-﻿using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Descriptors;
+﻿using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
 
-namespace Jint.Native.String
+namespace IridiumJS.Native.String
 {
     public class StringInstance : ObjectInstance, IPrimitiveInstance
     {

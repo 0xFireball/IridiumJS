@@ -1,8 +1,8 @@
 ﻿using System;
-using Jint.Native;
-using Jint.Native.Function;
+using IridiumJS.Native;
+using IridiumJS.Native.Function;
 
-namespace Jint.Runtime.Interop
+namespace IridiumJS.Runtime.Interop
 {
     /// <summary>
     /// Wraps a Clr method into a FunctionInstance

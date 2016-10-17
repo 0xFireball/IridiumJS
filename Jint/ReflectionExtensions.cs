@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Jint
+namespace IridiumJS
 {
     internal static class ReflectionExtensions
     {
@@ -32,7 +32,7 @@ namespace Jint
 using System;
 using System.Reflection;
 
-namespace Jint
+namespace IridiumJS
 {
     internal static class ReflectionExtensions
     {

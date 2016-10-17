@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Jint.Runtime.Interop;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint
+namespace IridiumJS
 {
     public class Options
     {

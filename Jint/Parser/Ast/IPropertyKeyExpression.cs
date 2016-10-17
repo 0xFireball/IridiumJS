@@ -1,4 +1,4 @@
-﻿namespace Jint.Parser.Ast
+﻿namespace IridiumJS.Parser.Ast
 {
     /// <summary>
     /// Reprensents an expression which can be a key of a Property

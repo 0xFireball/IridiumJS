@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Descriptors;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
 
-namespace Jint.Native.Array
+namespace IridiumJS.Native.Array
 {
     public class ArrayInstance : ObjectInstance
     {

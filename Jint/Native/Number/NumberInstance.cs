@@ -1,8 +1,8 @@
 ﻿using System;
-using Jint.Native.Object;
-using Jint.Runtime;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
 
-namespace Jint.Native.Number
+namespace IridiumJS.Native.Number
 {
     public class NumberInstance : ObjectInstance, IPrimitiveInstance
     {

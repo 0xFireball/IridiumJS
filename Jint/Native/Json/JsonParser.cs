@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Jint.Native.Object;
-using Jint.Parser;
-using Jint.Parser.Ast;
-using Jint.Runtime;
+using IridiumJS.Native.Object;
+using IridiumJS.Parser;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime;
 
-namespace Jint.Native.Json
+namespace IridiumJS.Native.Json
 {
     public class JsonParser
     {

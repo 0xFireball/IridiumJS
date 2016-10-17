@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Jint.Native.Function;
-using Jint.Native.Object;
-using Jint.Runtime;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
 
-namespace Jint.Native.RegExp
+namespace IridiumJS.Native.RegExp
 {
     public sealed class RegExpConstructor : FunctionInstance, IConstructor
     {

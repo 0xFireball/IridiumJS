@@ -1,8 +1,8 @@
-﻿using Jint.Native;
-using Jint.Native.Object;
-using Jint.Runtime.References;
+﻿using IridiumJS.Native;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime.References;
 
-namespace Jint.Runtime.Environments
+namespace IridiumJS.Runtime.Environments
 {
     /// <summary>
     /// Represents a Liexical Environment (a.k.a Scope)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Jint.Parser
+namespace IridiumJS.Parser
 {
     public static class ParserExtensions
     {

@@ -1,6 +1,6 @@
-using Jint.Native;
+using IridiumJS.Native;
 
-namespace Jint.Parser.Ast
+namespace IridiumJS.Parser.Ast
 {
     public class Literal : Expression, IPropertyKeyExpression
     {

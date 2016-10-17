@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Jint.Parser.Ast
+namespace IridiumJS.Parser.Ast
 {
     public class SyntaxNode
     {

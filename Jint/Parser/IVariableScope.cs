@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Jint.Parser.Ast;
+using IridiumJS.Parser.Ast;
 
-namespace Jint.Parser
+namespace IridiumJS.Parser
 {
     /// <summary>
     /// Used to safe references to all variable delcarations in a specific scope.

@@ -1,6 +1,6 @@
-﻿using Jint.Native;
+﻿using IridiumJS.Native;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     /// <summary>
     /// http://www.ecma-international.org/ecma-262/5.1/#sec-8.9
@@ -29,6 +29,6 @@ namespace Jint.Runtime
             return Value != null ? Value : Undefined.Instance;
         }
 
-        public Jint.Parser.Location Location { get; set; }
+        public IridiumJS.Parser.Location Location { get; set; }
     }
 }

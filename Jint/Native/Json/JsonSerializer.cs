@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Jint.Native.Array;
-using Jint.Native.Global;
-using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Descriptors;
+using IridiumJS.Native.Array;
+using IridiumJS.Native.Global;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
 
-namespace Jint.Native.Json
+namespace IridiumJS.Native.Json
 {
     public class JsonSerializer
     {

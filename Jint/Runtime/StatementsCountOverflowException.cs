@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     public class StatementsCountOverflowException : Exception 
     {

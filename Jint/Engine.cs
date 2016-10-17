@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Jint.Native;
-using Jint.Native.Argument;
-using Jint.Native.Array;
-using Jint.Native.Boolean;
-using Jint.Native.Date;
-using Jint.Native.Error;
-using Jint.Native.Function;
-using Jint.Native.Global;
-using Jint.Native.Json;
-using Jint.Native.Math;
-using Jint.Native.Number;
-using Jint.Native.Object;
-using Jint.Native.RegExp;
-using Jint.Native.String;
-using Jint.Parser;
-using Jint.Parser.Ast;
-using Jint.Runtime;
-using Jint.Runtime.CallStack;
-using Jint.Runtime.Debugger;
-using Jint.Runtime.Descriptors;
-using Jint.Runtime.Environments;
-using Jint.Runtime.Interop;
-using Jint.Runtime.References;
+using IridiumJS.Native;
+using IridiumJS.Native.Argument;
+using IridiumJS.Native.Array;
+using IridiumJS.Native.Boolean;
+using IridiumJS.Native.Date;
+using IridiumJS.Native.Error;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Global;
+using IridiumJS.Native.Json;
+using IridiumJS.Native.Math;
+using IridiumJS.Native.Number;
+using IridiumJS.Native.Object;
+using IridiumJS.Native.RegExp;
+using IridiumJS.Native.String;
+using IridiumJS.Parser;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.CallStack;
+using IridiumJS.Runtime.Debugger;
+using IridiumJS.Runtime.Descriptors;
+using IridiumJS.Runtime.Environments;
+using IridiumJS.Runtime.Interop;
+using IridiumJS.Runtime.References;
 
-namespace Jint
+namespace IridiumJS
 {
     public class Engine
     {

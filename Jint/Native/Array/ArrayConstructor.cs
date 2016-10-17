@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using Jint.Native.Function;
-using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Array
+namespace IridiumJS.Native.Array
 {
     public sealed class ArrayConstructor : FunctionInstance, IConstructor
     {

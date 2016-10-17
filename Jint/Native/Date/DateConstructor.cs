@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
-using Jint.Native.Function;
-using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Date
+namespace IridiumJS.Native.Date
 {
     public sealed class DateConstructor : FunctionInstance, IConstructor
     {

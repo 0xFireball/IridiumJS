@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
-using Jint.Native;
-using Jint.Native.Function;
-using Jint.Native.Number;
-using Jint.Parser.Ast;
-using Jint.Runtime.Descriptors;
-using Jint.Runtime.Environments;
-using Jint.Runtime.References;
+using IridiumJS.Native;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Number;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime.Descriptors;
+using IridiumJS.Runtime.Environments;
+using IridiumJS.Runtime.References;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     public class ExpressionInterpreter
     {

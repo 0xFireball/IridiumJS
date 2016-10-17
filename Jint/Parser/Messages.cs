@@ -1,4 +1,4 @@
-﻿namespace Jint.Parser
+﻿namespace IridiumJS.Parser
 {
     // Error messages should be identical to V8.
     public class Messages

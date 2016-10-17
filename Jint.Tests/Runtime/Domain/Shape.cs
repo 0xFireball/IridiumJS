@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Jint.Tests.Runtime.Domain;
+using IridiumJS.Tests.Runtime.Domain;
 
 namespace Shapes
 {

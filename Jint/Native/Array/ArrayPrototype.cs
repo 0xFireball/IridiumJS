@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Descriptors;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Array
+namespace IridiumJS.Native.Array
 {
     /// <summary>
     /// http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4

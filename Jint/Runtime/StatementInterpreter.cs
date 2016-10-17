@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Jint.Native;
-using Jint.Parser.Ast;
-using Jint.Runtime.Environments;
-using Jint.Runtime.References;
+using IridiumJS.Native;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime.Environments;
+using IridiumJS.Runtime.References;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     public class StatementInterpreter
     {

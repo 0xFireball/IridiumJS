@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using Xunit;
 
-namespace Jint.Tests.Ecma
+namespace IridiumJS.Tests.Ecma
 {
     public class Test_10_1_7 : EcmaTest
     {

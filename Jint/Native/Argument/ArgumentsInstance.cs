@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Jint.Native.Function;
-using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Descriptors;
-using Jint.Runtime.Descriptors.Specialized;
-using Jint.Runtime.Environments;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
+using IridiumJS.Runtime.Descriptors.Specialized;
+using IridiumJS.Runtime.Environments;
 
-namespace Jint.Native.Argument
+namespace IridiumJS.Native.Argument
 {
     /// <summary>
     /// http://www.ecma-international.org/ecma-262/5.1/#sec-10.6

@@ -4,18 +4,18 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Dynamic;
 using System.Reflection;
-using Jint.Native.Array;
-using Jint.Native.Boolean;
-using Jint.Native.Date;
-using Jint.Native.Function;
-using Jint.Native.Number;
-using Jint.Native.Object;
-using Jint.Native.RegExp;
-using Jint.Native.String;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Array;
+using IridiumJS.Native.Boolean;
+using IridiumJS.Native.Date;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Number;
+using IridiumJS.Native.Object;
+using IridiumJS.Native.RegExp;
+using IridiumJS.Native.String;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native
+namespace IridiumJS.Native
 {
     [DebuggerTypeProxy(typeof(JsValueDebugView))]
     public class JsValue : IEquatable<JsValue>

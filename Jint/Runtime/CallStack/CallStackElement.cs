@@ -1,7 +1,7 @@
-﻿namespace Jint.Runtime
+﻿namespace IridiumJS.Runtime
 {
-    using Jint.Native;
-    using Jint.Parser.Ast;
+    using IridiumJS.Native;
+    using IridiumJS.Parser.Ast;
 
     public class CallStackElement
     {

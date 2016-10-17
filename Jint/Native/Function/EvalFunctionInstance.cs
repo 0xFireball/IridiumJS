@@ -1,8 +1,8 @@
-﻿using Jint.Parser;
-using Jint.Runtime;
-using Jint.Runtime.Environments;
+﻿using IridiumJS.Parser;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Environments;
 
-namespace Jint.Native.Function
+namespace IridiumJS.Native.Function
 {
     public class EvalFunctionInstance: FunctionInstance
     {

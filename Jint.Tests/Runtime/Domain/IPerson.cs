@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jint.Tests.Runtime.Domain
+namespace IridiumJS.Tests.Runtime.Domain
 {
     public interface IPerson
     {

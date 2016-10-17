@@ -1,8 +1,8 @@
-﻿using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+﻿using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Error
+namespace IridiumJS.Native.Error
 {
     /// <summary>
     /// http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.4

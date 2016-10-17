@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Jint.Native.Object;
+using IridiumJS.Native.Object;
 
-namespace Jint.Native.RegExp
+namespace IridiumJS.Native.RegExp
 {
     public class RegExpInstance : ObjectInstance
     {

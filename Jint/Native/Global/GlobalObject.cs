@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Jint.Native.Object;
-using Jint.Native.String;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Object;
+using IridiumJS.Native.String;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Global
+namespace IridiumJS.Native.Global
 {
     public sealed class GlobalObject : ObjectInstance
     {

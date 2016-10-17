@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Jint.Tests.Runtime
+namespace IridiumJS.Tests.Runtime
 {
     public class SamplesTests : IDisposable
     {

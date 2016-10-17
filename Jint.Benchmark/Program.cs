@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Jint.Benchmark
+namespace IridiumJS.Benchmark
 {
     class Program
     {
@@ -66,7 +66,7 @@ namespace Jint.Benchmark
                 {
                     if (!reuseEngine)
                     {
-                        jint = new Jint.Engine();
+                        jint = new IridiumJS.Engine();
                     }
 
                     jint.Execute(Script);

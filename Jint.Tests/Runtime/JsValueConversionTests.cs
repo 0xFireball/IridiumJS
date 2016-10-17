@@ -1,8 +1,8 @@
-﻿using Jint.Native;
-using Jint.Native.Array;
-using Jint.Native.Date;
-using Jint.Native.Object;
-using Jint.Native.RegExp;
+﻿using IridiumJS.Native;
+using IridiumJS.Native.Array;
+using IridiumJS.Native.Date;
+using IridiumJS.Native.Object;
+using IridiumJS.Native.RegExp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Jint.Tests.Runtime
+namespace IridiumJS.Tests.Runtime
 {
     public class JsValueConversionTests
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using Jint.Native;
-using Jint.Native.Error;
+using IridiumJS.Native;
+using IridiumJS.Native.Error;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     public class JavaScriptException : Exception
     {
@@ -44,7 +44,7 @@ namespace Jint.Runtime
             return _errorObject.ToString();
         }
 
-        public Jint.Parser.Location Location { get; set; }
+        public IridiumJS.Parser.Location Location { get; set; }
 
         public int LineNumber { get { return null == Location ? 0 : Location.Start.Line; } }
 

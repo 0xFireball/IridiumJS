@@ -1,4 +1,4 @@
-﻿namespace Jint.Native
+﻿namespace IridiumJS.Native
 {
     public static class Undefined
     {

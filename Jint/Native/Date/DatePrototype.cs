@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Date
+namespace IridiumJS.Native.Date
 {
     /// <summary>
     /// http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5

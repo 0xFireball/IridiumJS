@@ -1,7 +1,7 @@
-﻿using Jint.Native;
-using Jint.Runtime.Interop;
+﻿using IridiumJS.Native;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Tests.Runtime.Converters
+namespace IridiumJS.Tests.Runtime.Converters
 {
     public class NegateBoolConverter : IObjectConverter
     {

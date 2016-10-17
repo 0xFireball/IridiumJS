@@ -1,7 +1,7 @@
-﻿using Jint.Native;
-using Jint.Runtime.Environments;
+﻿using IridiumJS.Native;
+using IridiumJS.Runtime.Environments;
 
-namespace Jint.Runtime.References
+namespace IridiumJS.Runtime.References
 {
     /// <summary>
     /// Represents the Reference Specification Type

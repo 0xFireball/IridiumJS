@@ -3,12 +3,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Jint.Parser;
-using Jint.Parser.Ast;
+using IridiumJS.Parser;
+using IridiumJS.Parser.Ast;
 using Xunit;
 using Xunit.Extensions;
 
-namespace Jint.Tests.Parser
+namespace IridiumJS.Tests.Parser
 {
     public class JavascriptParserTests
     {

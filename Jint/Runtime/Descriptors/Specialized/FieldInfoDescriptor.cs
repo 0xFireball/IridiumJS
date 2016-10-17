@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Reflection;
-using Jint.Native;
+using IridiumJS.Native;
 
-namespace Jint.Runtime.Descriptors.Specialized
+namespace IridiumJS.Runtime.Descriptors.Specialized
 {
     public sealed class FieldInfoDescriptor : PropertyDescriptor
     {

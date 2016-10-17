@@ -1,7 +1,7 @@
-﻿using Jint.Native.Object;
-using Jint.Runtime;
+﻿using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
 
-namespace Jint.Native.Error
+namespace IridiumJS.Native.Error
 {
     public class ErrorInstance : ObjectInstance
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     public class MruPropertyCache2<TKey, TValue> : IDictionary<TKey, TValue> 
         where TValue:class

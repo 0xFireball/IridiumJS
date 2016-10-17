@@ -1,10 +1,10 @@
 ﻿using System;
-using Jint.Native.Number;
-using Jint.Native.Object;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Number;
+using IridiumJS.Native.Object;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.Math
+namespace IridiumJS.Native.Math
 {
     public sealed class MathInstance : ObjectInstance
     {

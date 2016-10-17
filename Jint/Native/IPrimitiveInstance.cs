@@ -1,6 +1,6 @@
-﻿using Jint.Runtime;
+﻿using IridiumJS.Runtime;
 
-namespace Jint.Native
+namespace IridiumJS.Native
 {
     public interface IPrimitiveInstance
     {

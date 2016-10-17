@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Jint.Native;
-using Jint.Parser.Ast;
-using Jint.Runtime.Environments;
+using IridiumJS.Native;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime.Environments;
 
-namespace Jint.Runtime.Debugger
+namespace IridiumJS.Runtime.Debugger
 {
     public class DebugInformation : EventArgs
     {

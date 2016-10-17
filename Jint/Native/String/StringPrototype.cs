@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Jint.Native.Array;
-using Jint.Native.Function;
-using Jint.Native.Object;
-using Jint.Native.RegExp;
-using Jint.Runtime;
-using Jint.Runtime.Descriptors;
-using Jint.Runtime.Interop;
+using IridiumJS.Native.Array;
+using IridiumJS.Native.Function;
+using IridiumJS.Native.Object;
+using IridiumJS.Native.RegExp;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Descriptors;
+using IridiumJS.Runtime.Interop;
 
-namespace Jint.Native.String
+namespace IridiumJS.Native.String
 {
 
 

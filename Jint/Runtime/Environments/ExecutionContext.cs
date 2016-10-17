@@ -1,6 +1,6 @@
-﻿using Jint.Native;
+﻿using IridiumJS.Native;
 
-namespace Jint.Runtime.Environments
+namespace IridiumJS.Runtime.Environments
 {
     public sealed class ExecutionContext
     {

@@ -1,6 +1,6 @@
-﻿using Jint.Native;
+﻿using IridiumJS.Native;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
     public static class Arguments
     {

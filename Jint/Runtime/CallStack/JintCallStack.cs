@@ -1,4 +1,4 @@
-﻿namespace Jint.Runtime.CallStack
+﻿namespace IridiumJS.Runtime.CallStack
 {
     using System.Collections.Generic;
     using System.Linq;

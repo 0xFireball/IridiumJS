@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Jint.Parser.Ast
+namespace IridiumJS.Parser.Ast
 {
     public class FunctionDeclaration : Statement, IFunctionDeclaration
     {

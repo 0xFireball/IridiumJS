@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Jint.Tests.Ecma
+namespace IridiumJS.Tests.Ecma
 {
     [Trait("Category","Pass")]
     public class Test_11_3_1 : EcmaTest

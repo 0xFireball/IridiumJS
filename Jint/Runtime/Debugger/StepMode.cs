@@ -1,4 +1,4 @@
-﻿namespace Jint.Runtime.Debugger
+﻿namespace IridiumJS.Runtime.Debugger
 {
     public enum StepMode
     {

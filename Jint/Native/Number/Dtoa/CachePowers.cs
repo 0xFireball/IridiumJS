@@ -30,7 +30,7 @@
 
 using System.Diagnostics;
 
-namespace Jint.Native.Number.Dtoa
+namespace IridiumJS.Native.Number.Dtoa
 {
 
     public class CachedPowers

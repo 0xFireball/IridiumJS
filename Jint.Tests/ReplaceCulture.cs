@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading;
 using Xunit.Sdk;
 
-namespace Jint.Tests
+namespace IridiumJS.Tests
 {
     /// <summary>
     /// Replaces the current culture and UI culture for the test.

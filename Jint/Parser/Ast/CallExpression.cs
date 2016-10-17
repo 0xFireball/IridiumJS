@@ -1,7 +1,7 @@
-using Jint.Native;
+using IridiumJS.Native;
 using System.Collections.Generic;
 
-namespace Jint.Parser.Ast
+namespace IridiumJS.Parser.Ast
 {
     public class CallExpression : Expression
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Jint.Native;
-using Jint.Parser.Ast;
+using IridiumJS.Native;
+using IridiumJS.Parser.Ast;
 
-namespace Jint.Runtime
+namespace IridiumJS.Runtime
 {
-    using Jint.Runtime.CallStack;
+    using IridiumJS.Runtime.CallStack;
 
     public class RecursionDepthOverflowException : Exception
     {

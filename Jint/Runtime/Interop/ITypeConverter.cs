@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Jint.Runtime.Interop
+namespace IridiumJS.Runtime.Interop
 {
     public interface ITypeConverter
     {
