@@ -12,7 +12,9 @@ namespace Jint.Repl
         static void Main(string[] args)
         {
             var engine = new Engine(cfg => cfg.AllowClr())
+                //Use print() and log() for console.log()
                 .SetValue("print", new Action<object>(Console.WriteLine))
+                .SetValue("log", new Action<object>(Console.WriteLine))
             ;
 
             var filename = args.Length > 0 ? args[0] : "";
@@ -32,7 +34,7 @@ namespace Jint.Repl
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.FileVersion;
 
-            Console.WriteLine("Welcome to Jint ({0})", version);
+            Console.WriteLine("Welcome to IridiumJS ({0})", version);
             Console.WriteLine("Type 'exit' to leave, 'print()' to write on the console.");
             Console.WriteLine();
 
@@ -40,7 +42,7 @@ namespace Jint.Repl
             while (true)
             {
                 Console.ForegroundColor = defaultColor;
-                Console.Write("jint> ");
+                Console.Write("iridiumjs> ");
                 var input = Console.ReadLine();
                 if (input == "exit")
                 {
