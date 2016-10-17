@@ -153,7 +153,7 @@ namespace IridiumJS
             if (Options._IsClrAllowed)
             {
                 Global.FastAddProperty("System", new NamespaceReference(this, "System"), false, false, false);
-                Global.FastAddProperty("importNamespace", new ClrFunctionInstance(this, (thisObj, arguments) =>
+                Global.FastAddProperty("clrimport", new ClrFunctionInstance(this, (thisObj, arguments) =>
                 {
                     return new NamespaceReference(this, TypeConverter.ToString(arguments.At(0)));
                 }), false, false, false);
