@@ -57,8 +57,8 @@ namespace IridiumJS.Benchmark
 
             if (runJint)
             {
-                Engine jint;
-                jint = new Engine();
+                JSEngine jint;
+                jint = new JSEngine();
                 jint.Execute(Script);
 
                 watch.Restart();
@@ -66,7 +66,7 @@ namespace IridiumJS.Benchmark
                 {
                     if (!reuseEngine)
                     {
-                        jint = new IridiumJS.Engine();
+                        jint = new IridiumJS.JSEngine();
                     }
 
                     jint.Execute(Script);

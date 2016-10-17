@@ -8,13 +8,13 @@ namespace IridiumJS.Native.Array
 {
     public sealed class ArrayConstructor : FunctionInstance, IConstructor
     {
-        private ArrayConstructor(Engine engine) :  base(engine, null, null, false)
+        private ArrayConstructor(JSEngine engine) :  base(engine, null, null, false)
         {
         }
 
         public ArrayPrototype PrototypeObject { get; private set; }
 
-        public static ArrayConstructor CreateArrayConstructor(Engine engine)
+        public static ArrayConstructor CreateArrayConstructor(JSEngine engine)
         {
             var obj = new ArrayConstructor(engine);
             obj.Extensible = true;

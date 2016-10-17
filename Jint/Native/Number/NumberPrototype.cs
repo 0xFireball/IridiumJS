@@ -12,12 +12,12 @@ namespace IridiumJS.Native.Number
     /// </summary>
     public sealed class NumberPrototype : NumberInstance
     {
-        private NumberPrototype(Engine engine)
+        private NumberPrototype(JSEngine engine)
             : base(engine)
         {
         }
 
-        public static NumberPrototype CreatePrototypeObject(Engine engine, NumberConstructor numberConstructor)
+        public static NumberPrototype CreatePrototypeObject(JSEngine engine, NumberConstructor numberConstructor)
         {
             var obj = new NumberPrototype(engine);
             obj.Prototype = engine.Object.PrototypeObject;

@@ -10,12 +10,12 @@ namespace IridiumJS.Native.Date
     /// </summary>
     public sealed class DatePrototype : DateInstance
     {
-        private DatePrototype(Engine engine)
+        private DatePrototype(JSEngine engine)
             : base(engine)
         {
         }
 
-        public static DatePrototype CreatePrototypeObject(Engine engine, DateConstructor dateConstructor)
+        public static DatePrototype CreatePrototypeObject(JSEngine engine, DateConstructor dateConstructor)
         {
             var obj = new DatePrototype(engine)
             {

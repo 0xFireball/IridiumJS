@@ -12,11 +12,11 @@ namespace IridiumJS.Native.Function
 {
     public sealed class FunctionConstructor : FunctionInstance, IConstructor
     {
-        private FunctionConstructor(Engine engine):base(engine, null, null, false)
+        private FunctionConstructor(JSEngine engine):base(engine, null, null, false)
         {
         }
 
-        public static FunctionConstructor CreateFunctionConstructor(Engine engine)
+        public static FunctionConstructor CreateFunctionConstructor(JSEngine engine)
         {
             var obj = new FunctionConstructor(engine);
             obj.Extensible = true;

@@ -8,9 +8,9 @@ namespace IridiumJS.Tests.CommonScripts
 {
     public class SunSpiderTests
     {
-        private Engine RunTest(string source)
+        private JSEngine RunTest(string source)
         {
-            var engine = new Engine()
+            var engine = new JSEngine()
                 .SetValue("log", new Action<object>(Console.WriteLine))
                 .SetValue("assert", new Action<bool>(Assert.True))
             ;

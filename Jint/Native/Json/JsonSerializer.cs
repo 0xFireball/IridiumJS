@@ -11,9 +11,9 @@ namespace IridiumJS.Native.Json
 {
     public class JsonSerializer
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
-        public JsonSerializer(Engine engine)
+        public JsonSerializer(JSEngine engine)
         {
             _engine = engine;
         }

@@ -9,7 +9,7 @@ namespace IridiumJS.Runtime.Environments
     /// </summary>
     public abstract class EnvironmentRecord : ObjectInstance
     {
-        protected EnvironmentRecord(Engine engine) : base(engine)
+        protected EnvironmentRecord(JSEngine engine) : base(engine)
         {
         }
 

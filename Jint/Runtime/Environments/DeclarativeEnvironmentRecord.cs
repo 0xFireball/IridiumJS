@@ -10,10 +10,10 @@ namespace IridiumJS.Runtime.Environments
     /// </summary>
     public sealed class DeclarativeEnvironmentRecord : EnvironmentRecord
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
         private readonly IDictionary<string, Binding> _bindings = new Dictionary<string, Binding>();
 
-        public DeclarativeEnvironmentRecord(Engine engine) : base(engine)
+        public DeclarativeEnvironmentRecord(JSEngine engine) : base(engine)
         {
             _engine = engine;
         }

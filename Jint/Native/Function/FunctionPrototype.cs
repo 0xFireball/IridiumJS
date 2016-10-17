@@ -12,11 +12,11 @@ namespace IridiumJS.Native.Function
     /// </summary>
     public sealed class FunctionPrototype : FunctionInstance
     {
-        private FunctionPrototype(Engine engine) : base(engine, null, null, false)
+        private FunctionPrototype(JSEngine engine) : base(engine, null, null, false)
         {
         }
 
-        public static FunctionPrototype CreatePrototypeObject(Engine engine)
+        public static FunctionPrototype CreatePrototypeObject(JSEngine engine)
         {
             var obj = new FunctionPrototype(engine);
             obj.Extensible = true;

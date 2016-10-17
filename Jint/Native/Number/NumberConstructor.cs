@@ -6,13 +6,13 @@ namespace IridiumJS.Native.Number
 {
     public sealed class NumberConstructor : FunctionInstance, IConstructor
     {
-        public NumberConstructor(Engine engine)
+        public NumberConstructor(JSEngine engine)
             : base(engine, null, null, false)
         {
             
         }
 
-        public static NumberConstructor CreateNumberConstructor(Engine engine)
+        public static NumberConstructor CreateNumberConstructor(JSEngine engine)
         {
             var obj = new NumberConstructor(engine);
             obj.Extensible = true;

@@ -19,12 +19,12 @@ namespace IridiumJS.Native.String
     /// </summary>
     public sealed class StringPrototype : StringInstance
     {
-        private StringPrototype(Engine engine)
+        private StringPrototype(JSEngine engine)
             : base(engine)
         {
         }
 
-        public static StringPrototype CreatePrototypeObject(Engine engine, StringConstructor stringConstructor)
+        public static StringPrototype CreatePrototypeObject(JSEngine engine, StringConstructor stringConstructor)
         {
             var obj = new StringPrototype(engine);
             obj.Prototype = engine.Object.PrototypeObject;

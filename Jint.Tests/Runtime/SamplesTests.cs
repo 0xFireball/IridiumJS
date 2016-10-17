@@ -5,11 +5,11 @@ namespace IridiumJS.Tests.Runtime
 {
     public class SamplesTests : IDisposable
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
         public SamplesTests()
         {
-            _engine = new Engine()
+            _engine = new JSEngine()
                 .SetValue("log", new Action<object>(Console.WriteLine))
                 .SetValue("assert", new Action<bool>(Assert.True))
                 ;
@@ -27,7 +27,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void GithubReadme1()
         {
-            var square = new Engine()
+            var square = new JSEngine()
                 .SetValue("x", 3)
                 .Execute("x * x")
                 .GetCompletionValue()

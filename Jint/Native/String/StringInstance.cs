@@ -6,7 +6,7 @@ namespace IridiumJS.Native.String
 {
     public class StringInstance : ObjectInstance, IPrimitiveInstance
     {
-        public StringInstance(Engine engine)
+        public StringInstance(JSEngine engine)
             : base(engine)
         {
         }

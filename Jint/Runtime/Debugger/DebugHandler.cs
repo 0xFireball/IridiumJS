@@ -13,9 +13,9 @@ namespace IridiumJS.Runtime.Debugger
         private readonly Stack<string> _debugCallStack;
         private StepMode _stepMode;
         private int _callBackStepOverDepth;
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
-        public DebugHandler(Engine engine)
+        public DebugHandler(JSEngine engine)
         {
             _engine = engine;
             _debugCallStack = new Stack<string>();

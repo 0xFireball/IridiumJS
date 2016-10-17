@@ -6,9 +6,9 @@ namespace IridiumJS.Native.Json
 {
     public sealed class JsonInstance : ObjectInstance
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
-        private JsonInstance(Engine engine)
+        private JsonInstance(JSEngine engine)
             : base(engine)
         {
             _engine = engine;
@@ -23,7 +23,7 @@ namespace IridiumJS.Native.Json
             }
         }
 
-        public static JsonInstance CreateJsonObject(Engine engine)
+        public static JsonInstance CreateJsonObject(JSEngine engine)
         {
             var json = new JsonInstance(engine);
             json.Prototype = engine.Object.PrototypeObject;

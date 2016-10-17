@@ -5,7 +5,7 @@ namespace IridiumJS.Native.Boolean
 {
     public class BooleanInstance : ObjectInstance, IPrimitiveInstance
     {
-        public BooleanInstance(Engine engine)
+        public BooleanInstance(JSEngine engine)
             : base(engine)
         {
         }

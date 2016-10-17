@@ -11,7 +11,7 @@ namespace IridiumJS.Runtime.Interop
     {
         private readonly Func<JsValue, JsValue[], JsValue> _func;
 
-        public ClrFunctionInstance(Engine engine, Func<JsValue, JsValue[], JsValue> func, int length)
+        public ClrFunctionInstance(JSEngine engine, Func<JsValue, JsValue[], JsValue> func, int length)
             : base(engine, null, null, false)
         {
             _func = func;
@@ -20,7 +20,7 @@ namespace IridiumJS.Runtime.Interop
             Extensible = true;
         }
 
-        public ClrFunctionInstance(Engine engine, Func<JsValue, JsValue[], JsValue> func)
+        public ClrFunctionInstance(JSEngine engine, Func<JsValue, JsValue[], JsValue> func)
             : this(engine, func, 0)
         {
         }

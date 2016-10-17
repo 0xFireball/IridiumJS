@@ -6,9 +6,9 @@ namespace IridiumJS.Native.Function
 {
     public abstract class FunctionInstance : ObjectInstance, ICallable
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
-        protected FunctionInstance(Engine engine, string[] parameters, LexicalEnvironment scope, bool strict) : base(engine)
+        protected FunctionInstance(JSEngine engine, string[] parameters, LexicalEnvironment scope, bool strict) : base(engine)
         {
             _engine = engine;
             FormalParameters = parameters;

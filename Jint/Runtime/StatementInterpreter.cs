@@ -10,9 +10,9 @@ namespace IridiumJS.Runtime
 {
     public class StatementInterpreter
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
-        public StatementInterpreter(Engine engine)
+        public StatementInterpreter(JSEngine engine)
         {
             _engine = engine;
         }

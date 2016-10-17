@@ -11,11 +11,11 @@ namespace IridiumJS.Native.Date
     {
         internal static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public DateConstructor(Engine engine) : base(engine, null, null, false)
+        public DateConstructor(JSEngine engine) : base(engine, null, null, false)
         {
         }
 
-        public static DateConstructor CreateDateConstructor(Engine engine)
+        public static DateConstructor CreateDateConstructor(JSEngine engine)
         {
             var obj = new DateConstructor(engine);
             obj.Extensible = true;

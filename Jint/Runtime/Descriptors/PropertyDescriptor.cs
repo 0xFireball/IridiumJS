@@ -93,7 +93,7 @@ namespace IridiumJS.Runtime.Descriptors
             return !IsDataDescriptor() && !IsAccessorDescriptor();
         }
 
-        public static PropertyDescriptor ToPropertyDescriptor(Engine engine, JsValue o)
+        public static PropertyDescriptor ToPropertyDescriptor(JSEngine engine, JsValue o)
         {
             var obj = o.TryCast<ObjectInstance>();
             if (obj == null)
@@ -161,7 +161,7 @@ namespace IridiumJS.Runtime.Descriptors
             return desc;
         }
 
-        public static JsValue FromPropertyDescriptor(Engine engine, PropertyDescriptor desc)
+        public static JsValue FromPropertyDescriptor(JSEngine engine, PropertyDescriptor desc)
         {
             if (desc == Undefined)
             {

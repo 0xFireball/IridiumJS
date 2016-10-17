@@ -16,7 +16,7 @@ namespace IridiumJS.Runtime.Interop
     {
         public Object Target { get; set; }
 
-        public ObjectWrapper(Engine engine, Object obj)
+        public ObjectWrapper(JSEngine engine, Object obj)
             : base(engine)
         {
             Target = obj;

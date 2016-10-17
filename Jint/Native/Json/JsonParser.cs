@@ -11,9 +11,9 @@ namespace IridiumJS.Native.Json
 {
     public class JsonParser
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
-        public JsonParser(Engine engine)
+        public JsonParser(JSEngine engine)
         {
             _engine = engine;
         }

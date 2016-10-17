@@ -9,12 +9,12 @@ namespace IridiumJS.Native.Error
     /// </summary>
     public sealed class ErrorPrototype : ErrorInstance
     {
-        private ErrorPrototype(Engine engine, string name)
+        private ErrorPrototype(JSEngine engine, string name)
             : base(engine, name)
         {
         }
 
-        public static ErrorPrototype CreatePrototypeObject(Engine engine, ErrorConstructor errorConstructor, string name)
+        public static ErrorPrototype CreatePrototypeObject(JSEngine engine, ErrorConstructor errorConstructor, string name)
         {
             var obj = new ErrorPrototype(engine, name) { Extensible = true };
             obj.FastAddProperty("constructor", errorConstructor, true, false, true);

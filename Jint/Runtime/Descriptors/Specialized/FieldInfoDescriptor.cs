@@ -6,11 +6,11 @@ namespace IridiumJS.Runtime.Descriptors.Specialized
 {
     public sealed class FieldInfoDescriptor : PropertyDescriptor
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
         private readonly FieldInfo _fieldInfo;
         private readonly object _item;
 
-        public FieldInfoDescriptor(Engine engine, FieldInfo fieldInfo, object item)
+        public FieldInfoDescriptor(JSEngine engine, FieldInfo fieldInfo, object item)
         {
             _engine = engine;
             _fieldInfo = fieldInfo;

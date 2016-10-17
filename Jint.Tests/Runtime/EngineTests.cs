@@ -15,13 +15,13 @@ namespace IridiumJS.Tests.Runtime
 {
     public class EngineTests : IDisposable
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
         private int countBreak = 0;
         private StepMode stepMode;
 
         public EngineTests()
         {
-            _engine = new Engine()
+            _engine = new JSEngine()
                 .SetValue("log", new Action<object>(Console.WriteLine))
                 .SetValue("assert", new Action<bool>(Assert.True))
                 .SetValue("equal", new Action<object, object>(Assert.Equal))
@@ -59,7 +59,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData("Hello", "'Hello'")]
         public void ShouldInterpretLiterals(object expected, string source)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -68,7 +68,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void ShouldInterpretVariableDeclaration()
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine
                 .Execute("var foo = 'bar'; foo;")
                 .GetCompletionValue()
@@ -90,7 +90,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData(4d, "19 >>> 2")]
         public void ShouldInterpretBinaryExpression(object expected, string source)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -101,7 +101,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData(58d, "~~58")]
         public void ShouldInterpretUnaryExpression(object expected, string source)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -571,7 +571,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData(true, "'ab' == 'a' + 'b'")]
         public void OperatorsPrecedence(object expected, string source)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -597,7 +597,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData(-1d, "parseInt('-1')")]
         public void ShouldEvaluateParseInt(object expected, string source)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -606,14 +606,14 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void ShouldNotExecuteDebuggerStatement()
         {
-            new Engine().Execute("debugger");
+            new JSEngine().Execute("debugger");
         }
 
         [Fact]
         public void ShouldThrowStatementCountOverflow()
         {
             Assert.Throws<StatementsCountOverflowException>(
-                () => new Engine(cfg => cfg.MaxStatements(100)).Execute("while(true);")
+                () => new JSEngine(cfg => cfg.MaxStatements(100)).Execute("while(true);")
             );
         }
 
@@ -621,7 +621,7 @@ namespace IridiumJS.Tests.Runtime
         public void ShouldThrowTimeout()
         {
             Assert.Throws<TimeoutException>(
-                () => new Engine(cfg => cfg.TimeoutInterval(new TimeSpan(0, 0, 0, 0, 500))).Execute("while(true);")
+                () => new JSEngine(cfg => cfg.TimeoutInterval(new TimeSpan(0, 0, 0, 0, 500))).Execute("while(true);")
             );
         }
 
@@ -639,7 +639,7 @@ namespace IridiumJS.Tests.Runtime
             ";
 
             Assert.Throws<RecursionDepthOverflowException>(
-                () => new Engine(cfg => cfg.LimitRecursion()).Execute(script)
+                () => new JSEngine(cfg => cfg.LimitRecursion()).Execute(script)
             );
         }
 
@@ -658,7 +658,7 @@ namespace IridiumJS.Tests.Runtime
             ";
 
             Assert.Throws<RecursionDepthOverflowException>(
-                () => new Engine(cfg => cfg.LimitRecursion()).Execute(script)
+                () => new JSEngine(cfg => cfg.LimitRecursion()).Execute(script)
             );
         }
 
@@ -691,7 +691,7 @@ namespace IridiumJS.Tests.Runtime
             ";
 
             Assert.Throws<RecursionDepthOverflowException>(
-                () => new Engine(cfg => cfg.LimitRecursion()).Execute(script)
+                () => new JSEngine(cfg => cfg.LimitRecursion()).Execute(script)
             );
         }
 
@@ -727,7 +727,7 @@ namespace IridiumJS.Tests.Runtime
 
             try
             {
-                new Engine(cfg => cfg.LimitRecursion()).Execute(script);
+                new JSEngine(cfg => cfg.LimitRecursion()).Execute(script);
             }
             catch (RecursionDepthOverflowException ex)
             {
@@ -751,7 +751,7 @@ namespace IridiumJS.Tests.Runtime
             var result = factorial(8);
             ";
 
-            new Engine(cfg => cfg.LimitRecursion(20)).Execute(script);
+            new JSEngine(cfg => cfg.LimitRecursion(20)).Execute(script);
         }
 
         [Fact]
@@ -767,7 +767,7 @@ namespace IridiumJS.Tests.Runtime
             ";
 
             Assert.Throws<RecursionDepthOverflowException>(
-                () => new Engine(cfg => cfg.LimitRecursion(20)).Execute(script)
+                () => new JSEngine(cfg => cfg.LimitRecursion(20)).Execute(script)
             );
         }
 
@@ -979,7 +979,7 @@ namespace IridiumJS.Tests.Runtime
         public void ShouldBeCultureInvariant()
         {
             // decimals in french are separated by commas
-            var engine = new Engine();
+            var engine = new JSEngine();
 
             var result = engine.Execute("1.2 + 2.1").GetCompletionValue().AsNumber();
             Assert.Equal(3.3d, result);
@@ -991,7 +991,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void ShouldGetTheLastSyntaxNode()
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             engine.Execute("1.2");
 
             var result = engine.GetLastSyntaxNode();
@@ -1001,7 +1001,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void ShouldGetParseErrorLocation()
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             try
             {
                 engine.Execute("1.2+ new", new ParserOptions { Source = "jQuery.js" });
@@ -1017,7 +1017,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void ParseShouldReturnNumber()
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
 
             var result = engine.Execute("Date.parse('1970-01-01');").GetCompletionValue().AsNumber();
             Assert.Equal(0, result);
@@ -1027,7 +1027,7 @@ namespace IridiumJS.Tests.Runtime
         public void LocalDateTimeShouldNotLoseTimezone()
         {
             var date = new DateTime(2016, 1, 1, 13, 0, 0, DateTimeKind.Local);
-            var engine = new Engine().SetValue("localDate", date);
+            var engine = new JSEngine().SetValue("localDate", date);
             engine.Execute(@"localDate");
             var actual = engine.GetCompletionValue().AsDate().ToDateTime();
             Assert.Equal(date.ToUniversalTime(), actual.ToUniversalTime());
@@ -1039,7 +1039,7 @@ namespace IridiumJS.Tests.Runtime
         {
             var customTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
 
-            var engine = new Engine(cfg => cfg.LocalTimeZone(customTimeZone));
+            var engine = new JSEngine(cfg => cfg.LocalTimeZone(customTimeZone));
 
             var result = engine.Execute("Date.UTC(1970,0,1)").GetCompletionValue().AsNumber();
             Assert.Equal(0, result);
@@ -1059,7 +1059,7 @@ namespace IridiumJS.Tests.Runtime
         var customTimeZone = TimeZoneInfo.Utc;
 #endif
 
-            var engine = new Engine(cfg => cfg.LocalTimeZone(customTimeZone));
+            var engine = new JSEngine(cfg => cfg.LocalTimeZone(customTimeZone));
 
             var epochGetLocalMinutes = engine.Execute("var d = new Date(0); d.getMinutes();").GetCompletionValue().AsNumber();
             Assert.Equal(11, epochGetLocalMinutes);
@@ -1105,7 +1105,7 @@ namespace IridiumJS.Tests.Runtime
 #else
             var customTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Tonga Standard Time");
 #endif
-            var engine = new Engine(cfg => cfg.LocalTimeZone(customTimeZone));
+            var engine = new JSEngine(cfg => cfg.LocalTimeZone(customTimeZone));
 
             engine.SetValue("d", date);
             var result = engine.Execute("Date.parse(d);").GetCompletionValue().AsNumber();
@@ -1144,7 +1144,7 @@ namespace IridiumJS.Tests.Runtime
 #else
     var customTimeZone = TimeZoneInfo.Utc;
 #endif
-            var engine = new Engine(cfg => cfg.LocalTimeZone(customTimeZone)).SetValue("d", date);
+            var engine = new JSEngine(cfg => cfg.LocalTimeZone(customTimeZone)).SetValue("d", date);
 
             var result = engine.Execute("Date.parse(d);").GetCompletionValue().AsNumber();
 
@@ -1169,7 +1169,7 @@ namespace IridiumJS.Tests.Runtime
         {
             var customTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Tonga Standard Time");
 
-            var engine = new Engine(ctx => ctx.LocalTimeZone(customTimeZone));
+            var engine = new JSEngine(ctx => ctx.LocalTimeZone(customTimeZone));
             var testDateTimeOffset = new DateTimeOffset(testDate, customTimeZone.GetUtcOffset(testDate));
             engine.Execute(
                 string.Format("var d = new Date({0},{1},{2},{3},{4},{5},{6});", testDateTimeOffset.Year, testDateTimeOffset.Month - 1, testDateTimeOffset.Day, testDateTimeOffset.Hour, testDateTimeOffset.Minute, testDateTimeOffset.Second, testDateTimeOffset.Millisecond));
@@ -1181,7 +1181,7 @@ namespace IridiumJS.Tests.Runtime
         {
             var customTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Tonga Standard Time");
 
-            var engine = new Engine(ctx => ctx.LocalTimeZone(customTimeZone));
+            var engine = new JSEngine(ctx => ctx.LocalTimeZone(customTimeZone));
             var testDateTimeOffset = new DateTimeOffset(testDate, customTimeZone.GetUtcOffset(testDate));
             engine.Execute(
                 string.Format("var d = new Date({0},{1},{2},{3},{4},{5},{6});", testDateTimeOffset.Year, testDateTimeOffset.Month - 1, testDateTimeOffset.Day, testDateTimeOffset.Hour, testDateTimeOffset.Minute, testDateTimeOffset.Second, testDateTimeOffset.Millisecond));
@@ -1242,7 +1242,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void DateShouldAllowEntireDotNetDateRange()
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
 
             var minValue = engine.Execute("new Date('0001-01-01T00:00:00.000')").GetCompletionValue().ToObject();
             Assert.Equal(new DateTime(1, 1, 1, 0, 0, 0, DateTimeKind.Utc), minValue);
@@ -1339,7 +1339,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData(10.995, 0, "11")]
         public void ShouldRoundToFixedDecimal(double number, int fractionDigits, string result)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var value = engine.Execute(
                 String.Format("new Number({0}).toFixed({1})",
                     number.ToString(CultureInfo.InvariantCulture),
@@ -1373,7 +1373,7 @@ namespace IridiumJS.Tests.Runtime
             countBreak = 0;
             stepMode = StepMode.None;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
 
             engine.Break += EngineStep;
 
@@ -1394,7 +1394,7 @@ namespace IridiumJS.Tests.Runtime
             countBreak = 0;
             stepMode = StepMode.Into;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
 
             engine.Step += EngineStep;
 
@@ -1413,7 +1413,7 @@ namespace IridiumJS.Tests.Runtime
             countBreak = 0;
             stepMode = StepMode.Into;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
             engine.BreakPoints.Add(new BreakPoint(1, 1));
             engine.Step += EngineStep;
             engine.Break += EngineStep;
@@ -1429,7 +1429,7 @@ namespace IridiumJS.Tests.Runtime
         private StepMode EngineStep(object sender, DebugInformation debugInfo)
         {
             Assert.NotNull(sender);
-            Assert.IsType(typeof(Engine), sender);
+            Assert.IsType(typeof(JSEngine), sender);
             Assert.NotNull(debugInfo);
 
             countBreak++;
@@ -1442,7 +1442,7 @@ namespace IridiumJS.Tests.Runtime
             countBreak = 0;
             stepMode = StepMode.None;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
             engine.BreakPoints.Add(new BreakPoint(5, 0));
             engine.Break += EngineStepVerifyDebugInfo;
 
@@ -1462,7 +1462,7 @@ namespace IridiumJS.Tests.Runtime
         private StepMode EngineStepVerifyDebugInfo(object sender, DebugInformation debugInfo)
         {
             Assert.NotNull(sender);
-            Assert.IsType(typeof(Engine), sender);
+            Assert.IsType(typeof(JSEngine), sender);
             Assert.NotNull(debugInfo);
 
             Assert.NotNull(debugInfo.CallStack);
@@ -1486,7 +1486,7 @@ namespace IridiumJS.Tests.Runtime
             countBreak = 0;
             stepMode = StepMode.None;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
 
             engine.Break += EngineStep;
 
@@ -1512,7 +1512,7 @@ namespace IridiumJS.Tests.Runtime
             countBreak = 0;
             stepMode = StepMode.Out;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
 
             engine.Step += EngineStep;
 
@@ -1534,7 +1534,7 @@ namespace IridiumJS.Tests.Runtime
         {
             countBreak = 0;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
 
             engine.Step += EngineStepOutWhenInsideFunction;
 
@@ -1554,7 +1554,7 @@ namespace IridiumJS.Tests.Runtime
         private StepMode EngineStepOutWhenInsideFunction(object sender, DebugInformation debugInfo)
         {
             Assert.NotNull(sender);
-            Assert.IsType(typeof(Engine), sender);
+            Assert.IsType(typeof(JSEngine), sender);
             Assert.NotNull(debugInfo);
 
             countBreak++;
@@ -1570,7 +1570,7 @@ namespace IridiumJS.Tests.Runtime
             countBreak = 0;
             stepMode = StepMode.None;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
             engine.BreakPoints.Add(new BreakPoint(4, 33));
             engine.Break += EngineStep;
 
@@ -1592,7 +1592,7 @@ namespace IridiumJS.Tests.Runtime
         {
             countBreak = 0;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
 
             stepMode = StepMode.Over;
             engine.Step += EngineStep;
@@ -1615,7 +1615,7 @@ namespace IridiumJS.Tests.Runtime
         {
             countBreak = 0;
 
-            var engine = new Engine(options => options.DebugMode());
+            var engine = new JSEngine(options => options.DebugMode());
 
             stepMode = StepMode.Over;
             engine.Step += EngineStep;
@@ -1696,7 +1696,7 @@ namespace IridiumJS.Tests.Runtime
             var PDT = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
             var FR = new CultureInfo("fr-FR");
 
-            var engine = new Engine(options => options.LocalTimeZone(PDT).Culture(FR))
+            var engine = new JSEngine(options => options.LocalTimeZone(PDT).Culture(FR))
                 .SetValue("log", new Action<object>(Console.WriteLine))
                 .SetValue("assert", new Action<bool>(Assert.True))
                 .SetValue("equal", new Action<object, object>(Assert.Equal))
@@ -1718,7 +1718,7 @@ namespace IridiumJS.Tests.Runtime
         public void DateShouldHonorTimezoneDaylightSavingRules()
         {
             var EST = TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time");
-            var engine = new Engine(options => options.LocalTimeZone(EST))
+            var engine = new JSEngine(options => options.LocalTimeZone(EST))
                 .SetValue("log", new Action<object>(Console.WriteLine))
                 .SetValue("assert", new Action<bool>(Assert.True))
                 .SetValue("equal", new Action<object, object>(Assert.Equal))
@@ -1740,7 +1740,7 @@ namespace IridiumJS.Tests.Runtime
             var PDT = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
             var FR = new CultureInfo("fr-FR");
 
-            new Engine(options => options.LocalTimeZone(PDT).Culture(FR))
+            new JSEngine(options => options.LocalTimeZone(PDT).Culture(FR))
                 .SetValue("log", new Action<object>(Console.WriteLine))
                 .SetValue("assert", new Action<bool>(Assert.True))
                 .SetValue("equal", new Action<object, object>(Assert.Equal))
@@ -1759,7 +1759,7 @@ namespace IridiumJS.Tests.Runtime
             var PDT = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
             var FR = new CultureInfo("fr-FR");
 
-            new Engine(options => options.LocalTimeZone(PDT).Culture(FR))
+            new JSEngine(options => options.LocalTimeZone(PDT).Culture(FR))
                 .SetValue("log", new Action<object>(Console.WriteLine))
                 .SetValue("assert", new Action<bool>(Assert.True))
                 .SetValue("equal", new Action<object, object>(Assert.Equal))

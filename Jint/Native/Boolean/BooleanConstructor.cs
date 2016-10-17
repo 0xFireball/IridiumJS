@@ -6,11 +6,11 @@ namespace IridiumJS.Native.Boolean
 {
     public sealed class BooleanConstructor : FunctionInstance, IConstructor
     {
-        private BooleanConstructor(Engine engine): base(engine, null, null, false)
+        private BooleanConstructor(JSEngine engine): base(engine, null, null, false)
         {
         }
 
-        public static BooleanConstructor CreateBooleanConstructor(Engine engine)
+        public static BooleanConstructor CreateBooleanConstructor(JSEngine engine)
         {
             var obj = new BooleanConstructor(engine);
             obj.Extensible = true;

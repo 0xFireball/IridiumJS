@@ -13,11 +13,11 @@ namespace IridiumJS.Tests.Runtime
 {
     public class InteropTests : IDisposable
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
         public InteropTests()
         {
-            _engine = new Engine(cfg => cfg.AllowClr(
+            _engine = new JSEngine(cfg => cfg.AllowClr(
                 typeof(Shape).GetTypeInfo().Assembly,
                 typeof(System.IO.File).GetTypeInfo().Assembly))
                 .SetValue("log", new Action<object>(Console.WriteLine))
@@ -979,12 +979,12 @@ namespace IridiumJS.Tests.Runtime
         public void CanSetCustomConverters()
         {
 
-            var engine1 = new Engine();
+            var engine1 = new JSEngine();
             engine1.SetValue("p", new { Test = true });
             engine1.Execute("var result = p.Test;");
             Assert.True((bool)engine1.GetValue("result").ToObject());
 
-            var engine2 = new Engine(o => o.AddObjectConverter(new NegateBoolConverter()));
+            var engine2 = new JSEngine(o => o.AddObjectConverter(new NegateBoolConverter()));
             engine2.SetValue("p", new { Test = true });
             engine2.Execute("var result = p.Test;");
             Assert.False((bool)engine2.GetValue("result").ToObject());
@@ -994,7 +994,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void CanConvertEnumsToString()
         {
-            var engine1 = new Engine(o => o.AddObjectConverter(new EnumsToStringConverter()))
+            var engine1 = new JSEngine(o => o.AddObjectConverter(new EnumsToStringConverter()))
                 .SetValue("assert", new Action<bool>(Assert.True));
             engine1.SetValue("p", new { Comparison = StringComparison.CurrentCulture });
             engine1.Execute("assert(p.Comparison === 'CurrentCulture');");

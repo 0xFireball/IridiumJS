@@ -11,7 +11,7 @@ namespace IridiumJS.Repl
     {
         static void Main(string[] args)
         {
-            var engine = new Engine(cfg => cfg.AllowClr())
+            var engine = new JSEngine(cfg => cfg.AllowClr())
                 //Use print() and log() for console.log()
                 .SetValue("print", new Action<object>(Console.WriteLine))
                 .SetValue("log", new Action<object>(Console.WriteLine))

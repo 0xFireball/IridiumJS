@@ -14,7 +14,7 @@ namespace IridiumJS.Runtime.Interop
     {
         private readonly MethodInfo[] _methods;
 
-        public MethodInfoFunctionInstance(Engine engine, MethodInfo[] methods)
+        public MethodInfoFunctionInstance(JSEngine engine, MethodInfo[] methods)
             : base(engine, null, null, false)
         {
             _methods = methods;

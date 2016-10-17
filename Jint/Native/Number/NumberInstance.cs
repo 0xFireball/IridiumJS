@@ -8,7 +8,7 @@ namespace IridiumJS.Native.Number
     {
         private static readonly long NegativeZeroBits = BitConverter.DoubleToInt64Bits(-0.0);
 
-        public NumberInstance(Engine engine)
+        public NumberInstance(JSEngine engine)
             : base(engine)
         {
         }

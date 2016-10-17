@@ -15,7 +15,7 @@ namespace IridiumJS.Runtime.Interop
     {
         private readonly Delegate _d;
 
-        public DelegateWrapper(Engine engine, Delegate d) : base(engine, null, null, false)
+        public DelegateWrapper(JSEngine engine, Delegate d) : base(engine, null, null, false)
         {
             _d = d;
             Prototype = engine.Function.PrototypeObject;

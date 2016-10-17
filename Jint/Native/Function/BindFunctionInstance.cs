@@ -6,7 +6,7 @@ namespace IridiumJS.Native.Function
 {
     public class BindFunctionInstance : FunctionInstance, IConstructor
     {
-        public BindFunctionInstance(Engine engine) : base(engine, new string[0], null, false)
+        public BindFunctionInstance(JSEngine engine) : base(engine, new string[0], null, false)
         {
         }
 

@@ -27,7 +27,7 @@ using IridiumJS.Runtime.References;
 
 namespace IridiumJS
 {
-    public class Engine
+    public class JSEngine
     {
         private readonly ExpressionInterpreter _expressions;
         private readonly StatementInterpreter _statements;
@@ -42,35 +42,35 @@ namespace IridiumJS
         // cache of types used when resolving CLR type names
         internal Dictionary<string, Type> TypeCache = new Dictionary<string, Type>();
 
-        internal static Dictionary<Type, Func<Engine, object, JsValue>> TypeMappers = new Dictionary<Type, Func<Engine, object, JsValue>>()
+        internal static Dictionary<Type, Func<JSEngine, object, JsValue>> TypeMappers = new Dictionary<Type, Func<JSEngine, object, JsValue>>()
         {
-            { typeof(bool), (Engine engine, object v) => new JsValue((bool)v) },
-            { typeof(byte), (Engine engine, object v) => new JsValue((byte)v) },
-            { typeof(char), (Engine engine, object v) => new JsValue((char)v) },
-            { typeof(DateTime), (Engine engine, object v) => engine.Date.Construct((DateTime)v) },
-            { typeof(DateTimeOffset), (Engine engine, object v) => engine.Date.Construct((DateTimeOffset)v) },
-            { typeof(decimal), (Engine engine, object v) => new JsValue((double)(decimal)v) },
-            { typeof(double), (Engine engine, object v) => new JsValue((double)v) },
-            { typeof(Int16), (Engine engine, object v) => new JsValue((Int16)v) },
-            { typeof(Int32), (Engine engine, object v) => new JsValue((Int32)v) },
-            { typeof(Int64), (Engine engine, object v) => new JsValue((Int64)v) },
-            { typeof(SByte), (Engine engine, object v) => new JsValue((SByte)v) },
-            { typeof(Single), (Engine engine, object v) => new JsValue((Single)v) },
-            { typeof(string), (Engine engine, object v) => new JsValue((string)v) },
-            { typeof(UInt16), (Engine engine, object v) => new JsValue((UInt16)v) },
-            { typeof(UInt32), (Engine engine, object v) => new JsValue((UInt32)v) },
-            { typeof(UInt64), (Engine engine, object v) => new JsValue((UInt64)v) },
-            { typeof(JsValue), (Engine engine, object v) => (JsValue)v },
-            { typeof(System.Text.RegularExpressions.Regex), (Engine engine, object v) => engine.RegExp.Construct(((System.Text.RegularExpressions.Regex)v).ToString().Trim('/')) }
+            { typeof(bool), (JSEngine engine, object v) => new JsValue((bool)v) },
+            { typeof(byte), (JSEngine engine, object v) => new JsValue((byte)v) },
+            { typeof(char), (JSEngine engine, object v) => new JsValue((char)v) },
+            { typeof(DateTime), (JSEngine engine, object v) => engine.Date.Construct((DateTime)v) },
+            { typeof(DateTimeOffset), (JSEngine engine, object v) => engine.Date.Construct((DateTimeOffset)v) },
+            { typeof(decimal), (JSEngine engine, object v) => new JsValue((double)(decimal)v) },
+            { typeof(double), (JSEngine engine, object v) => new JsValue((double)v) },
+            { typeof(Int16), (JSEngine engine, object v) => new JsValue((Int16)v) },
+            { typeof(Int32), (JSEngine engine, object v) => new JsValue((Int32)v) },
+            { typeof(Int64), (JSEngine engine, object v) => new JsValue((Int64)v) },
+            { typeof(SByte), (JSEngine engine, object v) => new JsValue((SByte)v) },
+            { typeof(Single), (JSEngine engine, object v) => new JsValue((Single)v) },
+            { typeof(string), (JSEngine engine, object v) => new JsValue((string)v) },
+            { typeof(UInt16), (JSEngine engine, object v) => new JsValue((UInt16)v) },
+            { typeof(UInt32), (JSEngine engine, object v) => new JsValue((UInt32)v) },
+            { typeof(UInt64), (JSEngine engine, object v) => new JsValue((UInt64)v) },
+            { typeof(JsValue), (JSEngine engine, object v) => (JsValue)v },
+            { typeof(System.Text.RegularExpressions.Regex), (JSEngine engine, object v) => engine.RegExp.Construct(((System.Text.RegularExpressions.Regex)v).ToString().Trim('/')) }
         };
 
         internal JintCallStack CallStack = new JintCallStack();
 
-        public Engine() : this(null)
+        public JSEngine() : this(null)
         {
         }
 
-        public Engine(Action<Options> options)
+        public JSEngine(Action<Options> options)
         {
             _executionContexts = new Stack<ExecutionContext>();
 
@@ -231,34 +231,34 @@ namespace IridiumJS
             return executionContext;
         }
 
-        public Engine SetValue(string name, Delegate value)
+        public JSEngine SetValue(string name, Delegate value)
         {
             Global.FastAddProperty(name, new DelegateWrapper(this, value), true, false, true);
             return this;
         }
 
-        public Engine SetValue(string name, string value)
+        public JSEngine SetValue(string name, string value)
         {
             return SetValue(name, new JsValue(value));
         }
 
-        public Engine SetValue(string name, double value)
+        public JSEngine SetValue(string name, double value)
         {
             return SetValue(name, new JsValue(value));
         }
 
-        public Engine SetValue(string name, bool value)
+        public JSEngine SetValue(string name, bool value)
         {
             return SetValue(name, new JsValue(value));
         }
 
-        public Engine SetValue(string name, JsValue value)
+        public JSEngine SetValue(string name, JsValue value)
         {
             Global.Put(name, value, false);
             return this;
         }
 
-        public Engine SetValue(string name, Object obj)
+        public JSEngine SetValue(string name, Object obj)
         {
             return SetValue(name, JsValue.FromObject(this, obj));
         }
@@ -290,19 +290,19 @@ namespace IridiumJS
             CallStack.Clear();
         }
 
-        public Engine Execute(string source)
+        public JSEngine Execute(string source)
         {
             var parser = new JavaScriptParser();
             return Execute(parser.Parse(source));
         }
 
-        public Engine Execute(string source, ParserOptions parserOptions)
+        public JSEngine Execute(string source, ParserOptions parserOptions)
         {
             var parser = new JavaScriptParser();
             return Execute(parser.Parse(source, parserOptions));
         }
 
-        public Engine Execute(Program program)
+        public JSEngine Execute(Program program)
         {
             ResetStatementsCount();
             ResetTimeoutTicks();

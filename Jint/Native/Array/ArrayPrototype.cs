@@ -13,11 +13,11 @@ namespace IridiumJS.Native.Array
     /// </summary>
     public sealed class ArrayPrototype : ArrayInstance
     {
-        private ArrayPrototype(Engine engine) : base(engine)
+        private ArrayPrototype(JSEngine engine) : base(engine)
         {
         }
 
-        public static ArrayPrototype CreatePrototypeObject(Engine engine, ArrayConstructor arrayConstructor)
+        public static ArrayPrototype CreatePrototypeObject(JSEngine engine, ArrayConstructor arrayConstructor)
         {
             var obj = new ArrayPrototype(engine)
                 {

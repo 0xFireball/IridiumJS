@@ -7,12 +7,12 @@ namespace IridiumJS.Native.String
 {
     public sealed class StringConstructor : FunctionInstance, IConstructor
     {
-        public StringConstructor(Engine engine)
+        public StringConstructor(JSEngine engine)
             : base(engine, null, null, false)
         {
         }
 
-        public static StringConstructor CreateStringConstructor(Engine engine)
+        public static StringConstructor CreateStringConstructor(JSEngine engine)
         {
             var obj = new StringConstructor(engine);
             obj.Extensible = true;

@@ -10,11 +10,11 @@ namespace IridiumJS.Native.Global
 {
     public sealed class GlobalObject : ObjectInstance
     {
-        private GlobalObject(Engine engine) : base(engine)
+        private GlobalObject(JSEngine engine) : base(engine)
         {
         }
 
-        public static GlobalObject CreateGlobalObject(Engine engine)
+        public static GlobalObject CreateGlobalObject(JSEngine engine)
         {
             var global = new GlobalObject(engine) {Prototype = null, Extensible = true};
 

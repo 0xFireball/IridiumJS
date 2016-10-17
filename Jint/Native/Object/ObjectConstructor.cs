@@ -10,14 +10,14 @@ namespace IridiumJS.Native.Object
 {
     public sealed class ObjectConstructor : FunctionInstance, IConstructor
     {
-        private readonly Engine _engine;
+        private readonly JSEngine _engine;
 
-        private ObjectConstructor(Engine engine) : base(engine, null, null, false)
+        private ObjectConstructor(JSEngine engine) : base(engine, null, null, false)
         {
             _engine = engine;
         }
 
-        public static ObjectConstructor CreateObjectConstructor(Engine engine)
+        public static ObjectConstructor CreateObjectConstructor(JSEngine engine)
         {
             var obj = new ObjectConstructor(engine);
             obj.Extensible = true;

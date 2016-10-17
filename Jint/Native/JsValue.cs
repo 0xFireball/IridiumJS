@@ -288,7 +288,7 @@ namespace IridiumJS.Native
         /// <param name="engine"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static JsValue FromObject(Engine engine, object value)
+        public static JsValue FromObject(JSEngine engine, object value)
         {
             if (value == null)
             {
@@ -306,9 +306,9 @@ namespace IridiumJS.Native
 
             var valueType = value.GetType();
 
-            var typeMappers = Engine.TypeMappers;
+            var typeMappers = JSEngine.TypeMappers;
 
-            Func<Engine, object, JsValue> typeMapper;
+            Func<JSEngine, object, JsValue> typeMapper;
             if (typeMappers.TryGetValue(valueType, out typeMapper))
             {
                 return typeMapper(engine, value);
@@ -319,14 +319,14 @@ namespace IridiumJS.Native
             if (instance != null)
             {
                 // Learn conversion.
-                typeMappers.Add(valueType, (Engine e, object v) => new JsValue((ObjectInstance)v));
+                typeMappers.Add(valueType, (JSEngine e, object v) => new JsValue((ObjectInstance)v));
                 return new JsValue(instance);
             }
 
             var a = value as System.Array;
             if (a != null)
             {
-                Func<Engine, object, JsValue> convert = (Engine e, object v) =>
+                Func<JSEngine, object, JsValue> convert = (JSEngine e, object v) =>
                 {
                     var array = (System.Array)v;
 

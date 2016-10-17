@@ -8,12 +8,12 @@ namespace IridiumJS.Native.RegExp
 {
     public sealed class RegExpConstructor : FunctionInstance, IConstructor
     {
-        public RegExpConstructor(Engine engine)
+        public RegExpConstructor(JSEngine engine)
             : base(engine, null, null, false)
         {
         }
 
-        public static RegExpConstructor CreateRegExpConstructor(Engine engine)
+        public static RegExpConstructor CreateRegExpConstructor(JSEngine engine)
         {
             var obj = new RegExpConstructor(engine);
             obj.Extensible = true;

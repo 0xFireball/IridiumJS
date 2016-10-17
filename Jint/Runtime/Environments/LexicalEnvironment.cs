@@ -50,12 +50,12 @@ namespace IridiumJS.Runtime.Environments
             return GetIdentifierReference(lex.Outer, name, strict);
         }
 
-        public static LexicalEnvironment NewDeclarativeEnvironment(Engine engine, LexicalEnvironment outer = null)
+        public static LexicalEnvironment NewDeclarativeEnvironment(JSEngine engine, LexicalEnvironment outer = null)
         {
             return new LexicalEnvironment(new DeclarativeEnvironmentRecord(engine), outer);
         }
 
-        public static LexicalEnvironment NewObjectEnvironment(Engine engine, ObjectInstance objectInstance, LexicalEnvironment outer, bool provideThis)
+        public static LexicalEnvironment NewObjectEnvironment(JSEngine engine, ObjectInstance objectInstance, LexicalEnvironment outer, bool provideThis)
         {
             return new LexicalEnvironment(new ObjectEnvironmentRecord(engine, objectInstance, provideThis), outer);
         }

@@ -288,7 +288,7 @@ namespace IridiumJS.Runtime
             return ToString(ToPrimitive(o, Types.String));
         }
 
-        public static ObjectInstance ToObject(Engine engine, JsValue value)
+        public static ObjectInstance ToObject(JSEngine engine, JsValue value)
         {
             if (value.IsObject())
             {
@@ -339,7 +339,7 @@ namespace IridiumJS.Runtime
             return value.Type;
         }
 
-        public static void CheckObjectCoercible(Engine engine, JsValue o)
+        public static void CheckObjectCoercible(JSEngine engine, JsValue o)
         {
             if (o == Undefined.Instance || o == Null.Instance)
             {
@@ -347,7 +347,7 @@ namespace IridiumJS.Runtime
             }
         }
 
-        public static IEnumerable<MethodBase> FindBestMatch(Engine engine, MethodBase[] methods, JsValue[] arguments)
+        public static IEnumerable<MethodBase> FindBestMatch(JSEngine engine, MethodBase[] methods, JsValue[] arguments)
         {
             methods = methods
                 .Where(m => m.GetParameters().Count() == arguments.Length)

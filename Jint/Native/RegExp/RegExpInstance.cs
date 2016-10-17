@@ -5,7 +5,7 @@ namespace IridiumJS.Native.RegExp
 {
     public class RegExpInstance : ObjectInstance
     {
-        public RegExpInstance(Engine engine)
+        public RegExpInstance(JSEngine engine)
             : base(engine)
         {
         }

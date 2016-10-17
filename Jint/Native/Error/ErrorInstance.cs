@@ -5,7 +5,7 @@ namespace IridiumJS.Native.Error
 {
     public class ErrorInstance : ObjectInstance
     {
-        public ErrorInstance(Engine engine, string name)
+        public ErrorInstance(JSEngine engine, string name)
             : base(engine)
         {
             FastAddProperty("name", name, true, false, true);

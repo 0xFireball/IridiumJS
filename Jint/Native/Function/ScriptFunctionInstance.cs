@@ -21,7 +21,7 @@ namespace IridiumJS.Native.Function
         /// <param name="functionDeclaration"></param>
         /// <param name="scope"></param>
         /// <param name="strict"></param>
-        public ScriptFunctionInstance(Engine engine, IFunctionDeclaration functionDeclaration, LexicalEnvironment scope, bool strict)
+        public ScriptFunctionInstance(JSEngine engine, IFunctionDeclaration functionDeclaration, LexicalEnvironment scope, bool strict)
             : base(engine, functionDeclaration.Parameters.Select(x => x.Name).ToArray(), scope, strict)
         {
             _functionDeclaration = functionDeclaration;
