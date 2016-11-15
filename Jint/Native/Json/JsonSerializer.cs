@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using IridiumJS.Native.Array;
+﻿using IridiumJS.Native.Array;
 using IridiumJS.Native.Global;
 using IridiumJS.Native.Object;
 using IridiumJS.Runtime;
 using IridiumJS.Runtime.Descriptors;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IridiumJS.Native.Json
 {
@@ -18,10 +18,10 @@ namespace IridiumJS.Native.Json
             _engine = engine;
         }
 
-        Stack<object> _stack;
-        string _indent, _gap;
-        List<string> _propertyList;
-        JsValue _replacerFunction = Undefined.Instance;
+        private Stack<object> _stack;
+        private string _indent, _gap;
+        private List<string> _propertyList;
+        private JsValue _replacerFunction = Undefined.Instance;
 
         public JsValue Serialize(JsValue value, JsValue replacer, JsValue space)
         {
@@ -29,7 +29,7 @@ namespace IridiumJS.Native.Json
 
             // for JSON.stringify(), any function passed as the first argument will return undefined
             // if the replacer is not defined. The function is not called either.
-            if (value.Is<ICallable>() && replacer == Undefined.Instance) 
+            if (value.Is<ICallable>() && replacer == Undefined.Instance)
             {
                 return Undefined.Instance;
             }
@@ -73,7 +73,6 @@ namespace IridiumJS.Native.Json
                         {
                             _propertyList.Add(item);
                         }
-
                     }
                 }
             }
@@ -94,10 +93,11 @@ namespace IridiumJS.Native.Json
             // defining the gap
             if (space.IsNumber())
             {
-                if (space.AsNumber() > 0) {
+                if (space.AsNumber() > 0)
+                {
                     _gap = new System.String(' ', (int)System.Math.Min(10, space.AsNumber()));
                 }
-                else 
+                else
                 {
                     _gap = string.Empty;
                 }
@@ -120,7 +120,6 @@ namespace IridiumJS.Native.Json
 
         private JsValue Str(string key, ObjectInstance holder)
         {
-            
             var value = holder.Get(key);
             if (value.IsObject())
             {
@@ -134,14 +133,13 @@ namespace IridiumJS.Native.Json
                     }
                 }
             }
-            
+
             if (_replacerFunction != Undefined.Instance)
             {
                 var replacerFunctionCallable = (ICallable)_replacerFunction.AsObject();
                 value = replacerFunctionCallable.Call(holder, Arguments.From(key, value));
             }
 
-            
             if (value.IsObject())
             {
                 var valueObj = value.AsObject();
@@ -150,21 +148,25 @@ namespace IridiumJS.Native.Json
                     case "Number":
                         value = TypeConverter.ToNumber(value);
                         break;
+
                     case "String":
                         value = TypeConverter.ToString(value);
                         break;
+
                     case "Boolean":
                         value = TypeConverter.ToPrimitive(value);
                         break;
-                    case "Array": 
+
+                    case "Array":
                         value = SerializeArray(value.As<ArrayInstance>());
                         return value;
+
                     case "Object":
                         value = SerializeObject(value.AsObject());
                         return value;
                 }
             }
-           
+
             if (value == Null.Instance)
             {
                 return "null";
@@ -191,7 +193,7 @@ namespace IridiumJS.Native.Json
                 {
                     return TypeConverter.ToString(value);
                 }
-                
+
                 return "null";
             }
 
@@ -221,29 +223,36 @@ namespace IridiumJS.Native.Json
                     case '\"':
                         product += "\\\"";
                         break;
+
                     case '\\':
                         product += "\\\\";
                         break;
+
                     case '\b':
                         product += "\\b";
                         break;
+
                     case '\f':
                         product += "\\f";
                         break;
+
                     case '\n':
                         product += "\\n";
                         break;
+
                     case '\r':
                         product += "\\r";
                         break;
+
                     case '\t':
                         product += "\\t";
                         break;
+
                     default:
                         if (c < 0x20)
                         {
                             product += "\\u";
-                            product += ((int) c).ToString("x4");
+                            product += ((int)c).ToString("x4");
                         }
                         else
                             product += c;
@@ -257,7 +266,7 @@ namespace IridiumJS.Native.Json
 
         private string SerializeArray(ArrayInstance value)
         {
-            EnsureNonCyclicity(value);
+            CheckNonCyclicity(value);
             _stack.Push(value);
             var stepback = _indent;
             _indent = _indent + _gap;
@@ -288,34 +297,39 @@ namespace IridiumJS.Native.Json
                 var properties = System.String.Join(separator, partial.ToArray());
                 final = "[\n" + _indent + properties + "\n" + stepback + "]";
             }
-            
+
             _stack.Pop();
             _indent = stepback;
             return final;
         }
 
-        private void EnsureNonCyclicity(object value)
+        private bool CheckNonCyclicity(object value)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (_stack.Contains(value))
             {
-                throw new JavaScriptException(_engine.TypeError, "Cyclic reference detected.");
+                //throw new JavaScriptException(_engine.TypeError, "Cyclic reference detected.");
+                return false;
             }
+            return true;
         }
 
         private string SerializeObject(ObjectInstance value)
         {
             string final;
 
-            EnsureNonCyclicity(value);
+            if (!CheckNonCyclicity(value))
+            {
+                return string.Empty;
+            }
             _stack.Push(value);
             var stepback = _indent;
             _indent += _gap;
-            
+
             var k = _propertyList ?? value.GetOwnProperties()
                 .Where(x => x.Value.Enumerable.HasValue && x.Value.Enumerable.Value == true)
                 .Select(x => x.Key)
@@ -353,7 +367,7 @@ namespace IridiumJS.Native.Json
                     var separator = ",\n" + _indent;
                     var properties = System.String.Join(separator, partial.ToArray());
                     final = "{\n" + _indent + properties + "\n" + stepback + "}";
-                }                
+                }
             }
             _stack.Pop();
             _indent = stepback;
