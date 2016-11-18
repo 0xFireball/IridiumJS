@@ -40,8 +40,11 @@ namespace IridiumJS.Runtime.Interop
             {
                 return value;
             }
-
+#if NETPORTABLE
+            if (type.GetType().IsEnum)
+#else
             if (type.IsEnum())
+#endif
             {
                 var integer = System.Convert.ChangeType(value, typeof(int), formatProvider);
                 if (integer == null)
@@ -58,7 +61,11 @@ namespace IridiumJS.Runtime.Interop
             {
                 var function = (Func<JsValue, JsValue[], JsValue>)value;
 
+#if NETPORTABLE
+                if (type.IsGenericType)
+#else
                 if (type.IsGenericType())
+#endif
                 {
                     var genericType = type.GetGenericTypeDefinition();
 
@@ -76,7 +83,11 @@ namespace IridiumJS.Runtime.Interop
                         for (var i = 0; i < @params.Count(); i++)
                         {
                             var param = @params[i];
+#if NETPORTABLE
+                            if (param.Type.IsValueType)
+#else
                             if (param.Type.IsValueType())
+#endif
                             {
                                 var boxing = Expression.Convert(param, typeof(object));
                                 tmpVars[i] = Expression.Call(null, jsValueFromObject, Expression.Constant(_engine, typeof(JSEngine)), boxing);
@@ -90,7 +101,11 @@ namespace IridiumJS.Runtime.Interop
 
                         var callExpresion = Expression.Block(Expression.Call(
                                                 Expression.Call(Expression.Constant(function.Target),
+#if NETPORTABLE
+                                                    function.Method,
+#else
                                                     function.GetMethodInfo(),
+#endif
                                                     Expression.Constant(JsValue.Undefined, typeof(JsValue)),
                                                     @vars),
                                                 jsValueToObject), Expression.Empty());
@@ -125,7 +140,11 @@ namespace IridiumJS.Runtime.Interop
                                                     convertChangeType,
                                                     Expression.Call(
                                                             Expression.Call(Expression.Constant(function.Target),
+#if NETPORTABLE
+                                                                    function.Method,
+#else
                                                                     function.GetMethodInfo(),
+#endif
                                                                     Expression.Constant(JsValue.Undefined, typeof(JsValue)),
                                                                     @vars),
                                                             jsValueToObject),
@@ -158,7 +177,11 @@ namespace IridiumJS.Runtime.Interop
                         var callExpression = Expression.Block(
                                                 Expression.Call(
                                                     Expression.Call(Expression.Constant(function.Target),
+#if NETPORTABLE
+                                                        function.Method,
+#else
                                                         function.GetMethodInfo(),
+#endif
                                                         Expression.Constant(JsValue.Undefined, typeof(JsValue)),
                                                         @vars),
                                                     typeof(JsValue).GetMethod("ToObject")),
@@ -185,7 +208,12 @@ namespace IridiumJS.Runtime.Interop
                 return result;
             }
 
-            if (type.IsGenericType() && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+#if NETPORTABLE
+            if (type.IsGenericType &&
+#else
+            if (type.IsGenericType() && 
+#endif
+                type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 type = Nullable.GetUnderlyingType(type);
             }

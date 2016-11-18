@@ -23,9 +23,13 @@ namespace IridiumJS.Runtime.Interop
 
         public override JsValue Call(JsValue thisObject, JsValue[] jsArguments)
         {
-            var parameterInfos = _d.GetMethodInfo().GetParameters();
-
+#if NETPORTABLE
+            var parameterInfos = _d.Method.GetParameters();
+            bool delegateContainsParamsArgument = parameterInfos.Any(p => p.GetCustomAttributes(false).Any(a => a is ParamArrayAttribute));
+#else
+            var parameterInfos = _d.Method.GetParameters().GetMethodInfo().GetParameters();
             bool delegateContainsParamsArgument = parameterInfos.Any(p => p.HasAttribute<ParamArrayAttribute>());
+#endif
             int delegateArgumentsCount = parameterInfos.Length;
             int delegateNonParamsArgumentsCount = delegateContainsParamsArgument ? delegateArgumentsCount - 1 : delegateArgumentsCount;
 
@@ -55,7 +59,11 @@ namespace IridiumJS.Runtime.Interop
             // assign null to parameters not provided
             for (var i = jsArgumentsWithoutParamsCount; i < delegateNonParamsArgumentsCount; i++)
             {
+#if NETPORTABLE
+                if (parameterInfos[i].ParameterType.IsValueType)
+#else
                 if (parameterInfos[i].ParameterType.IsValueType())
+#endif
                 {
                     parameters[i] = Activator.CreateInstance(parameterInfos[i].ParameterType);
                 }

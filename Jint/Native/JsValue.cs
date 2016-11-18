@@ -349,7 +349,11 @@ namespace IridiumJS.Native
                 return new DelegateWrapper(engine, d);
             }
 
+#if NETPORTABLE
+            if (value.GetType().IsEnum)
+#else
             if (value.GetType().IsEnum())
+#endif
             {
                 return new JsValue((Int32)value);
             }

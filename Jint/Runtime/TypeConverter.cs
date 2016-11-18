@@ -399,7 +399,12 @@ namespace IridiumJS.Runtime
 
         public static bool TypeIsNullable(Type type)
         {
-            return !type.IsValueType() || Nullable.GetUnderlyingType(type) != null;
+#if NETPORTABLE
+            return !type.IsValueType
+#else
+            return !type.IsValueType() 
+#endif
+                || Nullable.GetUnderlyingType(type) != null;
         }
     }
 }

@@ -98,7 +98,11 @@ namespace IridiumJS.Runtime.Interop
             foreach (var methodInfo in methodInfos)
             {
                 var parameters = methodInfo.GetParameters();
+#if NETPORTABLE
+                if (!parameters.Any(p => p.GetCustomAttributes(false).Any(c => c is ParamArrayAttribute)))
+#else
                 if (!parameters.Any(p => p.HasAttribute<ParamArrayAttribute>()))
+#endif
                     continue;
 
                 var nonParamsArgumentsCount = parameters.Length - 1;

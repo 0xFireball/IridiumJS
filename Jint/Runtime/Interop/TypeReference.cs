@@ -44,7 +44,12 @@ namespace IridiumJS.Runtime.Interop
 
         public ObjectInstance Construct(JsValue[] arguments)
         {
-            if (arguments.Length == 0 && Type.IsValueType())
+            if (arguments.Length == 0 &&
+#if NETPORTABLE
+                Type.IsValueType)
+#else
+                Type.IsValueType())
+#endif
             {
                 var instance = Activator.CreateInstance(Type);
                 var result = TypeConverter.ToObject(Engine, JsValue.FromObject(Engine, instance));
@@ -148,8 +153,11 @@ namespace IridiumJS.Runtime.Interop
         public override PropertyDescriptor GetOwnProperty(string propertyName)
         {
             // todo: cache members locally
-
+#if NETPORTABLE
+            if (Type.IsEnum)
+#else
             if (Type.IsEnum())
+#endif
             {
                 Array enumValues = Enum.GetValues(Type);
                 Array enumNames = Enum.GetNames(Type);

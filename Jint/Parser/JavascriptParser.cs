@@ -1873,7 +1873,9 @@ namespace IridiumJS.Parser
                         Index = token.Range[0],
                         LineNumber = token.LineNumber.Value,
                         Column = token.Range[0] - _lineStart + 1,
+#if !NETPORTABLE
                         Source = _extra.Source
+#endif
                     };
             }
             else
@@ -1883,8 +1885,10 @@ namespace IridiumJS.Parser
                         Index = _index,
                         LineNumber = _lineNumber,
                         Column = _index - _lineStart + 1,
+#if !NETPORTABLE
                         Source = _extra.Source
-                    };
+#endif
+                };
             }
 
             exception.Description = msg;
@@ -1903,7 +1907,9 @@ namespace IridiumJS.Parser
                 {
                     _extra.Errors.Add(new ParserException(e.Message)
                     {
+#if !NETPORTABLE
                         Source = _extra.Source
+#endif
                     });
                 }
                 else
