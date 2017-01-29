@@ -38,27 +38,47 @@ namespace IridiumJS
     {
         internal static bool IsEnum(this Type type)
         {
+#if NETSTANDARD
+            return type.IsEnum();
+#else
             return type.IsEnum;
+#endif
         }
 
         internal static bool IsGenericType(this Type type)
         {
+#if NETSTANDARD
+            return type.IsGenericType();
+#else
             return type.IsGenericType;
+#endif
         }
 
         internal static bool IsValueType(this Type type)
         {
+#if NETSTANDARD
+            return type.IsValueType();
+#else
             return type.IsValueType;
+#endif
         }
 
         internal static bool HasAttribute<T>(this ParameterInfo member) where T : Attribute
         {
+#if NETSTANDARD
+            return member.HasAttribute<T>();
+#else
             return Attribute.IsDefined(member, typeof(T));
+#endif
         }
 
         internal static MethodInfo GetMethodInfo(this Delegate d)
         {
+#if NETSTANDARD
+            return d.GetMethodInfo();
+#else
             return d.Method;
+#endif
         }
     }
 }
