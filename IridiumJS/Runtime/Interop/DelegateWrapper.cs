@@ -26,8 +26,11 @@ namespace IridiumJS.Runtime.Interop
 #if NETPORTABLE
             var parameterInfos = _d.Method.GetParameters();
             bool delegateContainsParamsArgument = parameterInfos.Any(p => p.GetCustomAttributes(false).Any(a => a is ParamArrayAttribute));
+#elif NETSTANDARD
+            var parameterInfos = _d.GetMethodInfo().GetParameters();
+            bool delegateContainsParamsArgument = parameterInfos.Any(p => p.HasAttribute<ParamArrayAttribute>());
 #else
-            var parameterInfos = _d.Method.GetParameters().GetMethodInfo().GetParameters();
+            var parameterInfos = _d.Method.GetParameters();
             bool delegateContainsParamsArgument = parameterInfos.Any(p => p.HasAttribute<ParamArrayAttribute>());
 #endif
             int delegateArgumentsCount = parameterInfos.Length;
