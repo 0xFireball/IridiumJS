@@ -1,7 +1,7 @@
 {
-  "version": "2.10.2",
+  "version": "2.10.3",
   "title": "IridiumJS",
-  "description": "JavaScript interpreter for .NET based on Jint",
+  "description": "JavaScript interpreter for .NET forked from Jint",
   "language": "en-US",
   "copyright": "0xFireball, Sebastien Ros",
   "authors": [ "Sebastien Ros", "0xFireball" ],
