@@ -1,10 +1,10 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/xh2lsliy6usk60o5?svg=true)](https://ci.appveyor.com/project/SebastienRos/jint)
-[![NuGet](https://img.shields.io/nuget/v/Jint.svg)](https://www.nuget.org/packages/Jint)
-[![Join the chat at https://gitter.im/sebastienros/jint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sebastienros/jint)
 
-# Jint
+# IridiumJS
 
-Jint is a __Javascript interpreter__ for .NET which provides full __ECMA 5.1__ compliance and can run on __any .NET platform__. Because it doesn't generate any .NET bytecode nor use the DLR it runs relatively small scripts faster. It's available as a PCL on Nuget at https://www.nuget.org/packages/Jint.
+IridiumJS is a __Javascript interpreter__ for .NET based on the excellent [JINT](https://github.com/sebastienros/jint) interpreter which provides full __ECMA 5.1__ compliance and can run on __any .NET platform__.
+Because it doesn't generate any .NET bytecode nor use the DLR it runs relatively small scripts faster. It's available as a `.NETStandardv1.3` package on NuGet at <https://www.nuget.org/packages/IridiumJS>.
+
+IridiumJS is a fork of the JINT prject.
 
 # Features
 
@@ -13,10 +13,6 @@ Jint is a __Javascript interpreter__ for .NET which provides full __ECMA 5.1__ c
 - .NET Interoperability 
 
 > ECMAScript 6.0 currently being implemeted, see https://github.com/sebastienros/jint/issues/343
-
-# Discussion
-
-Join the chat on [Gitter](https://gitter.im/sebastienros/jint) or post your questions with the `jint` tag on [stackoverflow](http://stackoverflow.com/questions/tagged/jint).
 
 # Examples
 
@@ -152,6 +148,3 @@ This example is using French as the default culture.
   - boolean -> bool
   - Regex -> RegExp
   - Function -> Delegate
-
-Continuous Integration kindly provided by  [AppVeyor](https://www.appveyor.com)
-
