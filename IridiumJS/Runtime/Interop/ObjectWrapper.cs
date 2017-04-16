@@ -9,10 +9,10 @@ using System.Collections;
 
 namespace IridiumJS.Runtime.Interop
 {
-    /// <summary>
-    /// Wraps a CLR instance
-    /// </summary>
-    public sealed class ObjectWrapper : ObjectInstance, IObjectWrapper
+	/// <summary>
+	/// Wraps a CLR instance
+	/// </summary>
+	public sealed class ObjectWrapper : ObjectInstance, IObjectWrapper
     {
         public Object Target { get; set; }
 

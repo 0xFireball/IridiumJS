@@ -6,6 +6,7 @@ using IridiumJS.Native.Number;
 using IridiumJS.Parser.Ast;
 using IridiumJS.Runtime.Descriptors;
 using IridiumJS.Runtime.Environments;
+using IridiumJS.Runtime.Interop;
 using IridiumJS.Runtime.References;
 
 namespace IridiumJS.Runtime
@@ -381,40 +382,7 @@ namespace IridiumJS.Runtime
 
             if (typex == typey)
             {
-                if (typex == Types.Undefined || typex == Types.Null)
-                {
-                    return true;
-                }
-
-                if (typex == Types.Number)
-                {
-                    var nx = TypeConverter.ToNumber(x);
-                    var ny = TypeConverter.ToNumber(y);
-
-                    if (double.IsNaN(nx) || double.IsNaN(ny))
-                    {
-                        return false;
-                    }
-
-                    if (nx.Equals(ny))
-                    {
-                        return true;
-                    }
-
-                    return false;
-                }
-
-                if (typex == Types.String)
-                {
-                    return TypeConverter.ToString(x) == TypeConverter.ToString(y);
-                }
-
-                if (typex == Types.Boolean)
-                {
-                    return x.AsBoolean() == y.AsBoolean();
-                }
-
-                return x == y;
+				return StrictlyEqual(x, y);
             }
 
             if (x == Null.Instance && y == Undefined.Instance)
@@ -479,10 +447,11 @@ namespace IridiumJS.Runtime
             {
                 return true;
             }
+
             if (typea == Types.Number)
             {
-                var nx = TypeConverter.ToNumber(x);
-                var ny = TypeConverter.ToNumber(y);
+                var nx = x.AsNumber();
+                var ny = y.AsNumber();
 
                 if (double.IsNaN(nx) || double.IsNaN(ny))
                 {
@@ -496,14 +465,28 @@ namespace IridiumJS.Runtime
 
                 return false;
             }
+
             if (typea == Types.String)
             {
-                return TypeConverter.ToString(x) == TypeConverter.ToString(y);
+                return x.AsString() == y.AsString();
             }
+
             if (typea == Types.Boolean)
             {
-                return TypeConverter.ToBoolean(x) == TypeConverter.ToBoolean(y);
+                return x.AsBoolean() == y.AsBoolean();
             }
+
+			if (typea == Types.Object)
+			{
+				var xw = x.AsObject() as IObjectWrapper;
+
+				if (xw != null)
+				{
+					var yw = y.AsObject() as IObjectWrapper;
+					return Object.Equals(xw.Target, yw.Target);
+				}
+			}
+
             return x == y;
         }
 
@@ -632,7 +615,15 @@ namespace IridiumJS.Runtime
 
             if (literal.Type == SyntaxNodes.RegularExpressionLiteral)
             {
-                literal.CachedValue = _engine.RegExp.Construct(literal.Raw);
+				var regexp = _engine.RegExp.Construct(literal.Raw);
+
+				if (regexp.Global)
+				{
+					// A Global regexp literal can't be cached or its state would evolve
+					return regexp;
+				}
+
+				literal.CachedValue = regexp;
             }
             else
             {

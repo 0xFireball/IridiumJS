@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using IridiumJS.Native;
 using IridiumJS.Native.Function;
+using System.Reflection;
 
 namespace IridiumJS.Runtime.Interop
 {
@@ -103,8 +104,15 @@ namespace IridiumJS.Runtime.Interop
                 }
                 parameters[paramsArgumentIndex] = paramsParameter;
             }
-
-            return JsValue.FromObject(Engine, _d.DynamicInvoke(parameters));
+            try
+            {
+                return JsValue.FromObject(Engine, _d.DynamicInvoke(parameters));
+            }
+            catch (TargetInvocationException exception)
+            {
+                var meaningfulException = exception.InnerException ?? exception;
+                throw new JavaScriptException(Engine.Error, meaningfulException.Message);
+            }
         }
     }
 }
