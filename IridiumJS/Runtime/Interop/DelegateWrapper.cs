@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using IridiumJS.Native;
 using IridiumJS.Native.Function;
-using System.Reflection;
 
 namespace IridiumJS.Runtime.Interop
 {
