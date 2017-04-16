@@ -1844,7 +1844,7 @@ namespace IridiumJS.Tests.Runtime
         {
             try
             {
-                new Engine()
+                new JSEngine()
                     .Execute(@"
                     function test(s) {
                         o.boom();
@@ -1877,7 +1877,7 @@ namespace IridiumJS.Tests.Runtime
         [Fact]
         public void ShouldCompareInnerValueOfClrInstances()
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
 
             // Create two separate Guid with identical inner values.
             var guid1 = Guid.NewGuid();
@@ -1896,7 +1896,7 @@ namespace IridiumJS.Tests.Runtime
         {
             // 53.6841659 cannot be converted by V8's DToA => "old" DToA code will be used.
 
-            var engine = new Engine();
+            var engine = new JSEngine();
             Native.JsValue val = engine.Execute("JSON.stringify(53.6841659)").GetCompletionValue();
 
             Assert.True(val.AsString() == "53.6841659");
