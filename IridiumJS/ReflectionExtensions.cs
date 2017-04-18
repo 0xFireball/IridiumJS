@@ -39,7 +39,7 @@ namespace IridiumJS
         internal static bool IsEnum(this Type type)
         {
 #if NETSTANDARD
-            return type.IsEnum();
+            return type.GetTypeInfo().IsEnum;
 #else
             return type.IsEnum;
 #endif
@@ -48,7 +48,7 @@ namespace IridiumJS
         internal static bool IsGenericType(this Type type)
         {
 #if NETSTANDARD
-            return type.IsGenericType();
+            return type.GetTypeInfo().IsGenericType;
 #else
             return type.IsGenericType;
 #endif
@@ -57,7 +57,7 @@ namespace IridiumJS
         internal static bool IsValueType(this Type type)
         {
 #if NETSTANDARD
-            return type.IsValueType();
+            return type.GetTypeInfo().IsValueType;
 #else
             return type.IsValueType;
 #endif
