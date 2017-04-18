@@ -14,7 +14,7 @@
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
     <PackageId>IridiumJS</PackageId>
     <PackageTags>javascript, interpreter</PackageTags>
-    <PackageReleaseNotes>Fix package dependencies for .NET 4.5.</PackageReleaseNotes>
+    <PackageReleaseNotes>Bugfix update for .NET Standard port.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/0xFireball/IridiumJS.git</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/0xFireball/IridiumJS/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
