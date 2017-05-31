@@ -5,7 +5,6 @@ using IridiumJS.Native;
 using IridiumJS.Native.Object;
 using IridiumJS.Runtime.Descriptors;
 using IridiumJS.Runtime.Descriptors.Specialized;
-using System.Collections;
 
 namespace IridiumJS.Runtime.Interop
 {
