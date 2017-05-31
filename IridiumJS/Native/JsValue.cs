@@ -320,15 +320,11 @@ namespace IridiumJS.Native
             if (instance != null)
             {
                 // Learn conversion.
-<<<<<<< HEAD:IridiumJS/Native/JsValue.cs
-                typeMappers.Add(valueType, (JSEngine e, object v) => new JsValue((ObjectInstance)v));
-=======
                 // Learn conversion, racy, worst case we'll try again later
-                Interlocked.CompareExchange(ref Engine.TypeMappers, new Dictionary<Type, Func<Engine, object, JsValue>>(typeMappers)
+                Interlocked.CompareExchange(ref JSEngine.TypeMappers, new Dictionary<Type, Func<JSEngine, object, JsValue>>(typeMappers)
                 {
-                    [valueType] = (Engine e, object v) => new JsValue((ObjectInstance)v)
+                    [valueType] = (JSEngine e, object v) => new JsValue((ObjectInstance)v)
                 }, typeMappers);
->>>>>>> 541909a11d6523734b01ddcfacd0e51657975fa7:Jint/Native/JsValue.cs
                 return new JsValue(instance);
             }
 
@@ -349,7 +345,7 @@ namespace IridiumJS.Native
                     return jsArray;
                 };
                 // racy, we don't care, worst case we'll catch up later
-                Interlocked.CompareExchange(ref Engine.TypeMappers, new Dictionary<Type, Func<Engine, object, JsValue>>(typeMappers)
+                Interlocked.CompareExchange(ref JSEngine.TypeMappers, new Dictionary<Type, Func<JSEngine, object, JsValue>>(typeMappers)
                 {
                     [valueType] = convert
                 }, typeMappers);

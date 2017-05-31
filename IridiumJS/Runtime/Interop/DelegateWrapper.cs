@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using IridiumJS.Native;
 using IridiumJS.Native.Function;
-using System.Reflection;
 
 namespace IridiumJS.Runtime.Interop
 {
@@ -111,9 +110,6 @@ namespace IridiumJS.Runtime.Interop
             catch (TargetInvocationException exception)
             {
                 var meaningfulException = exception.InnerException ?? exception;
-<<<<<<< HEAD:IridiumJS/Runtime/Interop/DelegateWrapper.cs
-                throw new JavaScriptException(Engine.Error, meaningfulException.Message);
-=======
                 var handler = Engine.Options._ClrExceptionsHandler;
 
                 if (handler != null && handler(meaningfulException))
@@ -121,8 +117,7 @@ namespace IridiumJS.Runtime.Interop
                     throw new JavaScriptException(Engine.Error, meaningfulException.Message);
                 }
 
-                throw meaningfulException;         
->>>>>>> 541909a11d6523734b01ddcfacd0e51657975fa7:Jint/Runtime/Interop/DelegateWrapper.cs
+                throw meaningfulException;
             }
         }
     }
