@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD1_3
+﻿#if NETSTANDARD
 using System;
 using System.Linq;
 using System.Reflection;
@@ -38,47 +38,27 @@ namespace IridiumJS
     {
         internal static bool IsEnum(this Type type)
         {
-#if NETSTANDARD
-            return type.GetTypeInfo().IsEnum;
-#else
             return type.IsEnum;
-#endif
         }
 
         internal static bool IsGenericType(this Type type)
         {
-#if NETSTANDARD
-            return type.GetTypeInfo().IsGenericType;
-#else
             return type.IsGenericType;
-#endif
         }
 
         internal static bool IsValueType(this Type type)
         {
-#if NETSTANDARD
-            return type.GetTypeInfo().IsValueType;
-#else
             return type.IsValueType;
-#endif
         }
 
         internal static bool HasAttribute<T>(this ParameterInfo member) where T : Attribute
         {
-#if NETSTANDARD
-            return member.HasAttribute<T>();
-#else
             return Attribute.IsDefined(member, typeof(T));
-#endif
         }
 
         internal static MethodInfo GetMethodInfo(this Delegate d)
         {
-#if NETSTANDARD
-            return d.GetMethodInfo();
-#else
             return d.Method;
-#endif
         }
     }
 }
