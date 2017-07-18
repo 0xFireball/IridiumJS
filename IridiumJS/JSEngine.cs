@@ -709,8 +709,10 @@ namespace IridiumJS
             {
                 throw new ArgumentException("Can only invoke functions");
             }
-
-            return callable.Call(JsValue.FromObject(this, thisObj), arguments.Select(x => JsValue.FromObject(this, x)).ToArray());
+           
+            var retObj = callable.Call(JsValue.FromObject(this, thisObj), arguments.Select(x => JsValue.FromObject(this, x)).ToArray());
+            ResetTimeoutTicks();
+            return retObj;
         }
 
         /// <summary>
