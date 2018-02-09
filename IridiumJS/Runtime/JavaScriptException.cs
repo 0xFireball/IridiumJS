@@ -33,7 +33,7 @@ namespace IridiumJS.Runtime
             _errorObject = error;
         }
 
-        public JavaScriptException SetCallstack(Engine engine, Location location = null)
+        public JavaScriptException SetCallstack(JSEngine engine, Location location = null)
         {
             Location = location;
             var sb = new StringBuilder();

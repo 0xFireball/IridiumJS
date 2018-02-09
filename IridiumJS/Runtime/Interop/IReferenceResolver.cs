@@ -1,13 +1,13 @@
-﻿using Jint.Native;
-using Jint.Runtime.References;
+﻿using IridiumJS.Native;
+using IridiumJS.Runtime.References;
 
-namespace Jint.Runtime.Interop
+namespace IridiumJS.Runtime.Interop
 {
     public interface IReferenceResolver
     {
-        bool TryUnresolvableReference(Engine engine, Reference reference, out JsValue value);
-        bool TryPropertyReference(Engine engine, Reference reference, ref JsValue value);
-        bool TryGetCallable(Engine engine, object callee, out JsValue value);
+        bool TryUnresolvableReference(JSEngine engine, Reference reference, out JsValue value);
+        bool TryPropertyReference(JSEngine engine, Reference reference, ref JsValue value);
+        bool TryGetCallable(JSEngine engine, object callee, out JsValue value);
         bool CheckCoercible(JsValue value);
     }
 }
