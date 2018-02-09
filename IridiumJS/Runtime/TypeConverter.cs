@@ -7,6 +7,8 @@ using IridiumJS.Native;
 using IridiumJS.Native.Number;
 using IridiumJS.Native.Object;
 using IridiumJS.Native.String;
+using IridiumJS.Parser.Ast;
+using IridiumJS.Runtime.References;
 
 namespace IridiumJS.Runtime
 {
@@ -337,6 +339,25 @@ namespace IridiumJS.Runtime
             }
 
             return value.Type;
+        }
+
+        public static void CheckObjectCoercible(JSEngine engine, JsValue o, MemberExpression expression,
+            object baseReference)
+        {
+            if (o != Undefined.Instance && o != Null.Instance)
+                return;
+
+            if (engine.Options._ReferenceResolver != null && 
+                engine.Options._ReferenceResolver.CheckCoercible(o))
+                return;
+
+            var message = string.Empty;
+            var reference = baseReference as Reference;
+            if (reference != null)
+                message = $"{reference.GetReferencedName()} is {o}";
+
+            throw new JavaScriptException(engine.TypeError, message)
+                .SetCallstack(engine, expression.Location);
         }
 
         public static void CheckObjectCoercible(JSEngine engine, JsValue o)

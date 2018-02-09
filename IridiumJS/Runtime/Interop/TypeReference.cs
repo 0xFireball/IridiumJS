@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -12,14 +12,14 @@ namespace IridiumJS.Runtime.Interop
 {
     public class TypeReference : FunctionInstance, IConstructor, IObjectWrapper
     {
-        private TypeReference(JSEngine engine)
+        private TypeReference(Engine engine)
             : base(engine, null, null, false)
         {
         }
 
         public Type Type { get; set; }
 
-        public static TypeReference CreateTypeReference(JSEngine engine, Type type)
+        public static TypeReference CreateTypeReference(Engine engine, Type type)
         {
             var obj = new TypeReference(engine);
             obj.Extensible = false;
@@ -44,12 +44,7 @@ namespace IridiumJS.Runtime.Interop
 
         public ObjectInstance Construct(JsValue[] arguments)
         {
-            if (arguments.Length == 0 &&
-#if NETPORTABLE
-                Type.IsValueType)
-#else
-                Type.IsValueType())
-#endif
+            if (arguments.Length == 0 && Type.IsValueType())
             {
                 var instance = Activator.CreateInstance(Type);
                 var result = TypeConverter.ToObject(Engine, JsValue.FromObject(Engine, instance));
@@ -68,7 +63,7 @@ namespace IridiumJS.Runtime.Interop
                 {
                     for (var i = 0; i < arguments.Length; i++)
                     {
-                        var parameterType =  method.GetParameters()[i].ParameterType;
+                        var parameterType = method.GetParameters()[i].ParameterType;
 
                         if (parameterType == typeof(JsValue))
                         {
@@ -99,6 +94,18 @@ namespace IridiumJS.Runtime.Interop
 
             throw new JavaScriptException(Engine.TypeError, "No public methods with the specified arguments were found.");
 
+        }
+
+        public override bool HasInstance(JsValue v)
+        {
+            ObjectWrapper wrapper = v.As<ObjectWrapper>();
+
+            if (wrapper == null)
+            {
+                return base.HasInstance(v);
+            }
+
+            return wrapper.Target.GetType() == this.Type;
         }
 
         public override bool DefineOwnProperty(string propertyName, PropertyDescriptor desc, bool throwOnError)
@@ -153,11 +160,8 @@ namespace IridiumJS.Runtime.Interop
         public override PropertyDescriptor GetOwnProperty(string propertyName)
         {
             // todo: cache members locally
-#if NETPORTABLE
-            if (Type.IsEnum)
-#else
+
             if (Type.IsEnum())
-#endif
             {
                 Array enumValues = Enum.GetValues(Type);
                 Array enumNames = Enum.GetNames(Type);

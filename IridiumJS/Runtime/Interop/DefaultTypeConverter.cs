@@ -250,8 +250,16 @@ namespace IridiumJS.Runtime.Interop
 
             if (canConvert)
             {
-                converted = Convert(value, type, formatProvider);
-                return true;
+                try
+                {
+                    converted = Convert(value, type, formatProvider);
+                    return true;
+                }
+                catch
+                {
+                    converted = null;
+                    return false;
+                }
             }
 
             converted = null;
