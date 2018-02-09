@@ -5,9 +5,9 @@
     <Copyright>0xFireball, Sebastien Ros</Copyright>
     <AssemblyTitle>IridiumJS</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>2.10.3.4</VersionPrefix>
-    <Authors>Sebastien Ros;0xFireball;joonatoona;qxzcode</Authors>
-    <TargetFrameworks>netstandard1.4</TargetFrameworks>
+    <VersionPrefix>2.11.0</VersionPrefix>
+    <Authors>Sebastien Ros;0xFireball</Authors>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>IridiumJS</AssemblyName>
     <AssemblyOriginatorKeyFile>Jint.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
