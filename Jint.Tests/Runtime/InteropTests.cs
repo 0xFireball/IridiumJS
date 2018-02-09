@@ -279,6 +279,32 @@ namespace IridiumJS.Tests.Runtime
             Assert.Equal("Donald Duck", dictionary[2]);
         }
 
+        private class DoubleIndexedClass
+        {
+            public int this[int index]
+            {
+                get { return index; }
+            }
+
+            public string this[string index]
+            {
+                get { return index; }
+            }
+        }
+
+        [Fact]
+        public void CanGetIndexUsingBothIntAndStringIndex()
+        {
+            var dictionary = new DoubleIndexedClass();
+
+            _engine.SetValue("dictionary", dictionary);
+
+            RunTest(@"
+                assert(dictionary[1] === 1);
+                assert(dictionary['test'] === 'test');
+            ");
+        }
+
         [Fact]
         public void CanUseGenericMethods()
         {
@@ -832,6 +858,16 @@ namespace IridiumJS.Tests.Runtime
                 System.Console.WriteLine(content);
 
                 assert(content === 'Hello World');
+            ");
+        }
+
+        [Fact]
+        public void ShouldBeInstanceOfTypeReferenceType()
+        {
+            _engine.SetValue("A", typeof(A));
+            RunTest(@"
+                var a = new A();
+                assert(a instanceof A);
             ");
         }
 
@@ -1471,10 +1507,11 @@ namespace IridiumJS.Tests.Runtime
 
         public void ShouldNotCatchClrExceptions()
         {
-            Assert.ThrowsAny<NotSupportedException>(() => new JSEngine()
+            var engine = new JSEngine()
                 .SetValue("throwMyException", new Action(() => { throw new NotSupportedException(); }))
+                .SetValue("Thrower", typeof(Thrower))
                 .Execute(@"
-                    function throwException(){
+                    function throwException1(){
                         try {
                             throwMyException();
                             return;
@@ -1483,9 +1520,20 @@ namespace IridiumJS.Tests.Runtime
                             return;
                         }
                     }
-                ")
-                .Invoke("throwException")
-            );
+
+                    function throwException2(){
+                        try {
+                            new Thrower().ThrowNotSupportedException();
+                            return;
+                        } 
+                        catch(e) {
+                            return;
+                        }
+                    }
+                ");
+
+            Assert.ThrowsAny<NotSupportedException>(() => engine.Invoke("throwException1"));
+            Assert.ThrowsAny<NotSupportedException>(() => engine.Invoke("throwException2"));
         }
 
         [Fact]
@@ -1493,10 +1541,11 @@ namespace IridiumJS.Tests.Runtime
         {
             string exceptionMessage = "myExceptionMessage";
 
-            var result = new JSEngine(o => o.CatchClrExceptions())
+            var engine = new JSEngine(o => o.CatchClrExceptions())
                 .SetValue("throwMyException", new Action(() => { throw new Exception(exceptionMessage); }))
+                .SetValue("Thrower", typeof(Thrower))
                 .Execute(@"
-                    function throwException(){
+                    function throwException1(){
                         try {
                             throwMyException();
                             return '';
@@ -1505,10 +1554,20 @@ namespace IridiumJS.Tests.Runtime
                             return e.message;
                         }
                     }
-                ")
-                .Invoke("throwException");
 
-            Assert.Equal(result.AsString(), exceptionMessage);
+                    function throwException2(){
+                        try {
+                            new Thrower().ThrowExceptionWithMessage('myExceptionMessage');
+                            return;
+                        } 
+                        catch(e) {
+                            return e.message;
+                        }
+                    }
+                ");
+
+            Assert.Equal(engine.Invoke("throwException1").AsString(), exceptionMessage);
+            Assert.Equal(engine.Invoke("throwException2").AsString(), exceptionMessage);
         }
 
         [Fact]
@@ -1519,6 +1578,7 @@ namespace IridiumJS.Tests.Runtime
             var engine = new JSEngine(o => o.CatchClrExceptions(e => e is NotSupportedException))
                 .SetValue("throwMyException1", new Action(() => { throw new NotSupportedException(exceptionMessage); }))
                 .SetValue("throwMyException2", new Action(() => { throw new ArgumentNullException(); }))
+                .SetValue("Thrower", typeof(Thrower))
                 .Execute(@"
                     function throwException1(){
                         try {
@@ -1539,12 +1599,32 @@ namespace IridiumJS.Tests.Runtime
                             return e.message;
                         }
                     }
+
+                    function throwException3(){
+                        try {
+                            new Thrower().ThrowNotSupportedExceptionWithMessage('myExceptionMessage');
+                            return '';
+                        } 
+                        catch(e) {
+                            return e.message;
+                        }
+                    }
+
+                    function throwException4(){
+                        try {
+                            new Thrower().ThrowArgumentNullException();
+                            return '';
+                        } 
+                        catch(e) {
+                            return e.message;
+                        }
+                    }
                 ");
-
-            var result = engine.Invoke("throwException1");
-
-            Assert.Equal(result.AsString(), exceptionMessage);
+            
+            Assert.Equal(engine.Invoke("throwException1").AsString(), exceptionMessage);
             Assert.Throws<ArgumentNullException>(() => engine.Invoke("throwException2"));
+            Assert.Equal(engine.Invoke("throwException3").AsString(), exceptionMessage);
+            Assert.Throws<ArgumentNullException>(() => engine.Invoke("throwException4"));
         }
     }
 }

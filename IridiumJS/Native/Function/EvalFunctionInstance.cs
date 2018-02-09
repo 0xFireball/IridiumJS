@@ -58,7 +58,8 @@ namespace IridiumJS.Native.Function
 
                             if (result.Type == Completion.Throw)
                             {
-                                throw new JavaScriptException(result.GetValueOrDefault());
+                                throw new JavaScriptException(result.GetValueOrDefault())
+                                    .SetCallstack(_engine, result.Location);
                             }
                             else
                             {
