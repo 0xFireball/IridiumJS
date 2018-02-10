@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26406.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jint", "Jint\Jint.csproj", "{4B6F353A-5D01-407D-9DC8-96D1FD4F7052}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IridiumJS", "IridiumJS\IridiumJS.xproj", "{4B6F353A-5D01-407D-9DC8-96D1FD4F7052}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IridiumJS", "IridiumJS\IridiumJS.csproj", "{4B6F353A-5D01-407D-9DC8-96D1FD4F7052}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jint.Repl", "Jint.Repl\Jint.Repl.csproj", "{BB3AC010-C2CE-41A5-93C6-763600EF67B3}"
 EndProject
