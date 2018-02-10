@@ -19,7 +19,7 @@ namespace IridiumJS
         private int _maxRecursionDepth = -1; 
         private TimeSpan _timeoutInterval;
         #if NETCOREAPP2_0
-        private long _memoryLimit;
+        private long _memoryLimit = -1;
         #endif
         private CultureInfo _culture = CultureInfo.CurrentCulture;
         private TimeZoneInfo _localTimeZone = TimeZoneInfo.Local;

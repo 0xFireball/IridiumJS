@@ -6,7 +6,7 @@ using IridiumJS.Runtime.Interop;
 using IridiumJS.Runtime.References;
 using Xunit;
 
-namespace Jint.Tests.Runtime
+namespace IridiumJS.Tests.Runtime
 {
     public class NullPropagation
     {

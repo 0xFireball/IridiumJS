@@ -361,7 +361,7 @@ namespace IridiumJS
 
             #if NETCOREAPP2_0
             var memoryUsage = GC.GetAllocatedBytesForCurrentThread();
-            if (memoryUsage > Options._MemoryLimit)
+            if (Options._MemoryLimit > 0 && memoryUsage > Options._MemoryLimit)
             {
                 throw new OutOfMemoryException();
             }

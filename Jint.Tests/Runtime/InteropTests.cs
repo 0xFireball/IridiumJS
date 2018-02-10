@@ -956,7 +956,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanGetStaticField()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain');
                 var statics = domain.ClassWithStaticFields;
                 assert(statics.Get == 'Get');
             ");
@@ -966,7 +966,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanSetStaticField()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain');
                 var statics = domain.ClassWithStaticFields;
                 statics.Set = 'hello';
                 assert(statics.Set == 'hello');
@@ -979,7 +979,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanGetStaticAccessor()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain');
                 var statics = domain.ClassWithStaticFields;
                 assert(statics.Getter == 'Getter');
             ");
@@ -989,7 +989,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanSetStaticAccessor()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain');
                 var statics = domain.ClassWithStaticFields;
                 statics.Setter = 'hello';
                 assert(statics.Setter == 'hello');
@@ -1002,7 +1002,7 @@ namespace IridiumJS.Tests.Runtime
         public void CantSetStaticReadonly()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain');
                 var statics = domain.ClassWithStaticFields;
                 statics.Readonly = 'hello';
                 assert(statics.Readonly == 'Readonly');
@@ -1093,7 +1093,7 @@ namespace IridiumJS.Tests.Runtime
             _engine.SetValue("assertFalse", new Action<bool>(Assert.False));
 
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain');
                 var colors = domain.Colors;
                 assert(o.r === colors.Red);
                 assert(o.g === colors.Green);
@@ -1113,7 +1113,7 @@ namespace IridiumJS.Tests.Runtime
             _engine.SetValue("s", s);
 
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain');
                 var colors = domain.Colors;
 
                 s.Color = colors.Blue;
@@ -1388,7 +1388,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanGetStaticNestedField()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain.Nested');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain.Nested');
                 var statics = domain.ClassWithStaticFields;
                 assert(statics.Get == 'Get');
             ");
@@ -1398,7 +1398,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanSetStaticNestedField()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain.Nested');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain.Nested');
                 var statics = domain.ClassWithStaticFields;
                 statics.Set = 'hello';
                 assert(statics.Set == 'hello');
@@ -1411,7 +1411,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanGetStaticNestedAccessor()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain.Nested');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain.Nested');
                 var statics = domain.ClassWithStaticFields;
                 assert(statics.Getter == 'Getter');
             ");
@@ -1421,7 +1421,7 @@ namespace IridiumJS.Tests.Runtime
         public void CanSetStaticNestedAccessor()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain.Nested');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain.Nested');
                 var statics = domain.ClassWithStaticFields;
                 statics.Setter = 'hello';
                 assert(statics.Setter == 'hello');
@@ -1434,7 +1434,7 @@ namespace IridiumJS.Tests.Runtime
         public void CantSetStaticNestedReadonly()
         {
             RunTest(@"
-                var domain = importNamespace('Jint.Tests.Runtime.Domain.Nested');
+                var domain = importNamespace('IridiumJS.Tests.Runtime.Domain.Nested');
                 var statics = domain.ClassWithStaticFields;
                 statics.Readonly = 'hello';
                 assert(statics.Readonly == 'Readonly');
@@ -1506,6 +1506,7 @@ namespace IridiumJS.Tests.Runtime
             Assert.Equal(result.AsString(), exceptionMessage);
         }
 
+        [Fact]
         public void ShouldNotCatchClrExceptions()
         {
             var engine = new JSEngine()
