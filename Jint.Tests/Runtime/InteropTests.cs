@@ -1504,6 +1504,7 @@ namespace IridiumJS.Tests.Runtime
             ");
             var result = _engine.Invoke("throwException");
             Assert.Equal(result.AsString(), exceptionMessage);
+        }
 
         public void ShouldNotCatchClrExceptions()
         {
