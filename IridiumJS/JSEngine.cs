@@ -359,6 +359,14 @@ namespace IridiumJS
                 throw new TimeoutException();
             }
 
+            #if NETCOREAPP2_0
+            var memoryUsage = GC.GetAllocatedBytesForCurrentThread();
+            if (memoryUsage > Options._MemoryLimit)
+            {
+                throw new OutOfMemoryException();
+            }
+            #endif
+
             _lastSyntaxNode = statement;
 
             if (Options._IsDebugMode)

@@ -18,6 +18,9 @@ namespace IridiumJS
         private int _maxStatements;
         private int _maxRecursionDepth = -1; 
         private TimeSpan _timeoutInterval;
+        #if NETCOREAPP2_0
+        private long _memoryLimit;
+        #endif
         private CultureInfo _culture = CultureInfo.CurrentCulture;
         private TimeZoneInfo _localTimeZone = TimeZoneInfo.Local;
         private List<Assembly> _lookupAssemblies = new List<Assembly>();
@@ -119,6 +122,14 @@ namespace IridiumJS
             return this;
         }
 
+        #if NETCOREAPP2_0
+        public Options LimitMemory(long memoryLimit)
+        {
+            _memoryLimit = memoryLimit;
+            return this;
+        }
+        #endif
+
         /// <summary>
         /// Sets maximum allowed depth of recursion.
         /// </summary>
@@ -173,6 +184,10 @@ namespace IridiumJS
         internal int _MaxRecursionDepth => _maxRecursionDepth;
 
         internal TimeSpan _TimeoutInterval => _timeoutInterval;
+
+        #if NETCOREAPP2_0
+        internal long _MemoryLimit => _memoryLimit;
+        #endif
 
         internal CultureInfo _Culture => _culture;
 
