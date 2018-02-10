@@ -5,7 +5,7 @@
     <Copyright>0xFireball, Sebastien Ros</Copyright>
     <AssemblyTitle>IridiumJS</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>2.11.0</VersionPrefix>
+    <VersionPrefix>2.12.0</VersionPrefix>
     <Authors>Sebastien Ros;0xFireball</Authors>
     <TargetFrameworks>netstandard2.0;netcoreapp2.0</TargetFrameworks>
     <AssemblyName>IridiumJS</AssemblyName>
