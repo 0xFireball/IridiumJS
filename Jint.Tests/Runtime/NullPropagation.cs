@@ -1,32 +1,32 @@
-﻿using Jint.Native;
-using Jint.Native.Object;
-using Jint.Parser;
-using Jint.Runtime;
-using Jint.Runtime.Interop;
-using Jint.Runtime.References;
+﻿using IridiumJS.Native;
+using IridiumJS.Native.Object;
+using IridiumJS.Parser;
+using IridiumJS.Runtime;
+using IridiumJS.Runtime.Interop;
+using IridiumJS.Runtime.References;
 using Xunit;
 
-namespace Jint.Tests.Runtime
+namespace IridiumJS.Tests.Runtime
 {
     public class NullPropagation
     {
         public class NullPropagationReferenceResolver : IReferenceResolver
         {
-            public bool TryUnresolvableReference(Engine engine, Reference reference, out JsValue value)
+            public bool TryUnresolvableReference(JSEngine JSEngine, Reference reference, out JsValue value)
             {
                 value = reference.GetBase();
                 return true;
             }
 
-            public bool TryPropertyReference(Engine engine, Reference reference, ref JsValue value)
+            public bool TryPropertyReference(JSEngine JSEngine, Reference reference, ref JsValue value)
             {
                 return value.IsNull() || value.IsUndefined();
             }
 
-            public bool TryGetCallable(Engine engine, object reference, out JsValue value)
+            public bool TryGetCallable(JSEngine JSEngine, object reference, out JsValue value)
             {
                 value = new JsValue(
-                    new ClrFunctionInstance(engine, (thisObj, values) => thisObj)
+                    new ClrFunctionInstance(JSEngine, (thisObj, values) => thisObj)
                 );
                 return true;
             }
@@ -40,7 +40,7 @@ namespace Jint.Tests.Runtime
         [Fact]
         public void NullPropagationTest()
         {
-            var engine = new Engine(cfg => cfg.SetReferencesResolver(new NullPropagationReferenceResolver()));
+            var JSEngine = new JSEngine(cfg => cfg.SetReferencesResolver(new NullPropagationReferenceResolver()));
 
             const string Script = @"
 var input = { 
@@ -57,12 +57,12 @@ var output = {
 };
 ";
 
-            engine.Execute(Script);
+            JSEngine.Execute(Script);
 
-            var address = engine.GetValue("address");
-            var city = engine.GetValue("city");
-            var length = engine.GetValue("length");
-            var output = engine.GetValue("output").AsObject();
+            var address = JSEngine.GetValue("address");
+            var city = JSEngine.GetValue("city");
+            var length = JSEngine.GetValue("length");
+            var output = JSEngine.GetValue("output").AsObject();
 
             Assert.Equal(Null.Instance, address);
             Assert.Equal(Null.Instance, city);
@@ -75,7 +75,7 @@ var output = {
         [Fact]
         public void NullPropagationFromArg()
         {
-            var engine = new Engine(cfg => cfg.SetReferencesResolver(new NullPropagationReferenceResolver()));
+            var JSEngine = new JSEngine(cfg => cfg.SetReferencesResolver(new NullPropagationReferenceResolver()));
 
 
             const string Script = @"
@@ -87,12 +87,12 @@ function test2(arg) {
     return arg.Name.toUpperCase();
 }
 ";
-            engine.Execute(Script);
-            var result = engine.Invoke("test", Null.Instance);
+            JSEngine.Execute(Script);
+            var result = JSEngine.Invoke("test", Null.Instance);
 
             Assert.Equal(Null.Instance, result);
 
-            result = engine.Invoke("test2", Null.Instance);
+            result = JSEngine.Invoke("test2", Null.Instance);
 
             Assert.Equal(Null.Instance, result);
         }
@@ -100,9 +100,9 @@ function test2(arg) {
         [Fact]
         public void NullPropagationShouldNotAffectOperators()
         {
-            var engine = new Engine(cfg => cfg.SetReferencesResolver(new NullPropagationReferenceResolver()));
+            var JSEngine = new JSEngine(cfg => cfg.SetReferencesResolver(new NullPropagationReferenceResolver()));
 
-            var jsObject = engine.Object.Construct(Arguments.Empty);
+            var jsObject = JSEngine.Object.Construct(Arguments.Empty);
             jsObject.Put("NullField", JsValue.Null, true);
 
             var script = @"
@@ -113,12 +113,12 @@ this.has_emptyfield_not_null = this.EmptyField !== null;
 
             var wrapperScript = string.Format(@"function ExecutePatchScript(docInner){{ (function(doc){{ {0} }}).apply(docInner); }};", script);
 
-            engine.Execute(wrapperScript, new ParserOptions
+            JSEngine.Execute(wrapperScript, new ParserOptions
             {
                 Source = "main.js"
             });
 
-            engine.Invoke("ExecutePatchScript", jsObject);
+            JSEngine.Invoke("ExecutePatchScript", jsObject);
 
             Assert.False(jsObject.Get("is_nullfield_not_null").AsBoolean());
             Assert.True(jsObject.Get("is_notnullfield_not_null").AsBoolean());

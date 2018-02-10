@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Jint.Tests.Runtime.Domain
+namespace IridiumJS.Tests.Runtime.Domain
 {
     public class Thrower
     {

@@ -633,6 +633,16 @@ namespace IridiumJS.Tests.Runtime
             );
         }
 
+        #if NETCOREAPP2_0
+        [Fact]
+        public void ShouldThrowMemoryLimit()
+        {
+            Assert.Throws<OutOfMemoryException>(
+                () => new JSEngine(cfg => cfg.LimitMemory(16 * 1024)).Execute("let a = []; while(true) { k.push(0); } ")
+            );
+        }
+        #endif
+
 
         [Fact]
         public void CanDiscardRecursion()
@@ -2125,7 +2135,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData("%0{00", "unescape('%0%7B00')")]
         public void ShouldEvaluateUnescape(object expected, string source)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -2146,7 +2156,7 @@ namespace IridiumJS.Tests.Runtime
         //[InlineData("new Date(1971,0,1,19,45,30,500).getMilliseconds()", 500)]
         public void ShouldExtractDateParts(string source, double expected)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -2160,7 +2170,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData("'abc'.padStart(1)", "abc")]
         public void ShouldPadStart(string source, object expected)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);
@@ -2173,7 +2183,7 @@ namespace IridiumJS.Tests.Runtime
         [InlineData("'abc'.padEnd(1)", "abc")]
         public void ShouldPadEnd(string source, object expected)
         {
-            var engine = new Engine();
+            var engine = new JSEngine();
             var result = engine.Execute(source).GetCompletionValue().ToObject();
 
             Assert.Equal(expected, result);

@@ -1,9 +1,9 @@
 ﻿using System;
-using Jint.Parser;
-using Jint.Runtime;
+using IridiumJS.Parser;
+using IridiumJS.Runtime;
 using Xunit;
 
-namespace Jint.Tests.Runtime
+namespace IridiumJS.Tests.Runtime
 {
     public class ErrorTests
     {
@@ -16,7 +16,7 @@ var a = {};
 var b = a.user.name;
 ";
 
-            var engine = new Engine();
+            var engine = new JSEngine();
             var e = Assert.Throws<JavaScriptException>(() => engine.Execute(script));
             Assert.Equal("user is undefined", e.Message);
             Assert.Equal(4, e.Location.Start.Line);
@@ -30,7 +30,7 @@ var b = a.user.name;
  test();
 ";
 
-            var engine = new Engine();
+            var engine = new JSEngine();
             var e = Assert.Throws<JavaScriptException>(() => engine.Execute(script));
             Assert.Equal("test is not defined", e.Message);
             Assert.Equal(2, e.Location.Start.Line);
@@ -40,7 +40,7 @@ var b = a.user.name;
         [Fact]
         public void CanProduceCorrectStackTrace()
         {
-            var engine = new Engine(options => options.LimitRecursion(1000));
+            var engine = new JSEngine(options => options.LimitRecursion(1000));
 
             engine.Execute(@"var a = function(v) {
 	return v.xxx.yyy;
